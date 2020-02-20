@@ -20,8 +20,7 @@ Rails.application.routes.draw do
   namespace :admins do
     get 'end_users/index'
   end
-  get 'orders/index'
-  get 'orders/show'
+  
   get 'end_users/show'
   get 'end_users/confirm'
   get 'end_users/edit'
@@ -31,11 +30,16 @@ Rails.application.routes.draw do
   get 'cart_items/input'
   get 'cart_items/display'
   get 'cart_items/thanks'
-  get 'genres/index'
-  get 'items/index'
-  get 'items/show'
-  get 'homes/top'
+  
+  # top page
+  root 'homes#top'
   get 'homes/about'
+
+  # ec page
+  resources :items, only: [:index, :show, :create]
+  resources :genres, only: [:show]
+  resources :orders, only: [:index, :show, :create]
+
   devise_for :admin_users
   devise_for :end_users
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
