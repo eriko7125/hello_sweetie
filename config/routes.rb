@@ -1,31 +1,7 @@
 Rails.application.routes.draw do
-  namespace :admins do
-    get 'orders/index'
-    get 'orders/show'
-  end
-  namespace :admins do
-    get 'items/index'
-    get 'items/edit'
-    get 'items/new'
-    get 'items/show'
-  end
-  namespace :admins do
-    get 'materials/index'
-    get 'materials/edit'
-  end
-  namespace :admins do
-    get 'genres/index'
-    get 'genres/edit'
-  end
-  namespace :admins do
-    get 'end_users/index'
-  end
-  
-  get 'end_users/show'
-  get 'end_users/confirm'
-  get 'end_users/edit'
-  get 'addresses/index'
-  get 'addresses/edit'
+
+  get 'orders/index'
+  get 'orders/show'
   get 'cart_items/index'
   get 'cart_items/input'
   get 'cart_items/display'
@@ -40,7 +16,36 @@ Rails.application.routes.draw do
   resources :genres, only: [:show]
   resources :orders, only: [:index, :show, :create]
 
-  devise_for :admin_users
-  devise_for :end_users
+  #admin_users devise & end_users devise
+  devise_for :admin_users, controllers: {
+    sessions:      'admin_users/sessions',
+    passwords:     'admin_users/passwords',
+    registrations: 'admin_users/registrations'
+  }
+  devise_for :end_users, controllers: {
+    sessions:      'end_users/sessions',
+    passwords:     'end_users/passwords',
+    registrations: 'end_users/registrations'
+  }
+
+  # end_user page
+  resources :end_users, only: [:show, :edit, :update, :destroy] do
+    collection do
+      get :confirm
+    end
+  end
+
+  # admin page
+  namespace :admins do
+    resources :items, only: [:index, :show, :new, :edit, :create, :update]
+    resources :genres, only: [:index, :edit, :update, :create]
+    resources :materials, only: [:index, :edit, :update, :create]
+    resources :orders, only: [:index, :show, :update]
+    resources :order_details, only: [:update]
+    resources :end_users, only: [:index]
+  end
+
+  resources :addresses, only: [:index, :edit, :create, :update, :destroy]
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
