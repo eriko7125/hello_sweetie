@@ -25,10 +25,13 @@
 
 body {
   font-family: 'M PLUS Rounded 1c', sans-serif;
-  background-image: url("bg_img.jpg");
-  background-size: cover;
-  background-position: right;
+  color: #33131a;
 }
+
+a:link {color:#da536e; text-decoration:none }
+a:visited { color:#cc4e67; text-decoration:none }
+a:hover { color:#993a4d; text-decoration:none }
+a:active { color:white; text-decoration:none }
 
 .navbar {
   height: 60px;
@@ -39,10 +42,69 @@ body {
   font-size: 50px;
 }
 
+// footer
 footer {
   width: 100%;
+  height: 200px;
+  padding-top: 40px;
+  font-size: small;
+  background: linear-gradient(#cc4e67, white);
 }
 
+.yield {
+  padding: 20px 0px;
+}
+
+h1 {
+  font-size: x-large;
+  border-bottom: double 3px #662733;
+  margin-bottom: 30px;
+}
+
+h2 {
+  font-size: large;
+  margin-bottom: 30px;
+}
+
+li {
+  list-style: none;
+}
+
+.devise-btn {
+  color:#da536e;
+}
+// 通常のボタン色
+.btn-primary,
+.btn-primary.disabled,
+.btn-primary:disabled {
+  background: #fff;
+  border-color: #d98293;
+}
+
+// フォーカス時の枠線色
+.btn-primary:focus,
+.btn-primary:not(:disabled):not(.disabled):active:focus,
+.btn-primary:not(:disabled):not(.disabled).active:focus,
+.show>.btn-primary.dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgb(238, 229, 210);
+  background-color: #d9abd6;
+}
+
+// ホバー時のボタン色
+.btn-primary:hover {
+  color: #fff;
+  background-color: #d98293;
+  border-color: #d98293;
+}
+
+// アクティブ時のボタン色
+.btn-primary:not(:disabled):not(.disabled):active,
+.btn-primary:not(:disabled):not(.disabled).active,
+.show>.btn-primary.dropdown-toggle {
+  color: #fff;
+  background-color: #d9abd6;
+  border-color: #d9abd6;
+}
 .sk-image {
   height: 500px;
   width: 100%;
@@ -57,10 +119,15 @@ footer {
   background-image: url("sk/sk_img_2.jpg");
 }
 
-// #sk_img_3 {
-//   background-image: url("sk/sk_img_3.jpg");
-// }
+#sk_img_3 {
+  background-image: url("sk/sk_img_3.jpg");
+}
 
-// #sk_img_4 {
-//   background-image: url("sk/sk_img_4.jpg");
-// }
+#sk_img_4 {
+  background-image: url("sk/sk_img_4.jpg");
+}
+
+#sk_img_5 {
+  background-image: url("sk/sk_img_5.jpg");
+}
+

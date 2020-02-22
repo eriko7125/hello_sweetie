@@ -31,7 +31,7 @@
             <%= image_tag "logo.png" %>
           </nav>
           <nav class="nav justify-content-end">
-          <li><%= link_to "カート", cart_items_path, :class => "fas fa-shopping-cart" %></li>
+          <li><%= link_to "カート　", cart_items_index_path, :class => "fas fa-shopping-cart" %></li>
           <li><%= link_to "ログアウト", destroy_end_user_session_path, method: :delete, :class => "fas fa-sign-out-alt" %></li>
           </nav>
         <% else %>
@@ -43,7 +43,7 @@
           </nav>
           <ul class="nav justify-content-end">
             <li><%= link_to " ログイン　", new_end_user_session_path, :class => "fas fa-sign-in-alt" %></li>
-            <li><%= link_to " 新規登録", new_end_user_registration_path, :class => "fas fa-user-plus" %></li>
+            <li><%= link_to " ユーザー登録", new_end_user_registration_path, :class => "fas fa-user-plus" %></li>
           </ul>
         <% end %>
       <% end %>
@@ -58,32 +58,32 @@
   </header>
   
   <div class="container">
-    <body>
-      <%= yield %>
-    </body>
+    <div class="yield">
+      <body>
+        <%= yield %>
+      </body>
+    </div>
   </div>
 
   <footer>
-    <div class="container">
-      <ul class="nav navbar">
-        <li class="footer-list"><h5>営業日について</h5>
+    <ul class="d-flex">
+        <li class="col-2 offset-1"><h6>営業日について</h6>
         土日・祝日を除く
         <br>平日9:00〜18:00</li>
-        <li class="footer-list"><h5>お支払いについて</h5>
+        <li class="col-2"><h6>お支払いについて</h6>
         銀行振込 及び 代金引換 のみ
         <br>対応しております</li>
-        <li>© Hello,Sweetie!</li>
-        <li class="footer-list"><h5>SNS</h5>
+        <li class="col-2 align-self-center">© Hello,Sweetie!</li>
+        <li class="col-2"><h6>SNS</h6>
         <%= link_to "","https://www.instagram.com/liebling_suzu/?hl=ja", :class => "fab fa-instagram icon-class" %>
         <br>これまでに製作したお洋服や
         <br>着用画像を投稿しております！</li>
-        <li class="footer-list"><h5>サイト管理者</h5>
+        <li class="col-2"><h6>サイト管理者<%= link_to "", new_admin_user_session_path, class: "fas fa-wrench" %></h6>
         〇〇　〇〇
         <br>〒×××-××××
         <br>〇〇県〇〇市〇〇 ×-××-××
         </li>
-      </ul>
-    </div>
+    </ul>
   </footer>
 
 </html>
