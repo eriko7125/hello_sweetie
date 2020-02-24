@@ -36,10 +36,11 @@ Rails.application.routes.draw do
   end
 
   # admin page
-  namespace :admins do
+  namespace :admin do
     resources :items, only: [:index, :show, :new, :edit, :create, :update]
     resources :genres, only: [:index, :edit, :update, :create]
     resources :materials, only: [:index, :edit, :update, :create]
+    resources :ribbons, only: [:index, :edit, :update, :create]
     resources :orders, only: [:index, :show, :update]
     resources :order_details, only: [:update]
     resources :end_users, only: [:index]

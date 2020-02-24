@@ -1,0 +1,35 @@
+<div class="row">
+  <div class="col-10 offset-1">
+    <h1>会員一覧</h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-10 offset-1">
+    <table class="table table-bordered">
+      <thead class="thead-light">
+        <tr>
+          <th width="110">ユーザーID</th>
+          <th>氏名</th>
+          <th>電話番号</th>
+          <th>メールアドレス</th>
+          <th width="100">登録状態</th>
+        </tr>
+      </thead>
+      <% @end_users.each do |user| %>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= user.last_name %><%= user.first_name %></td>
+          <td><%= user.phone_number %></td>
+          <td><%= user.email %></td>
+          <td><% if user.deleted_at == nil %>
+            <%= "有効" %>
+          <% else %>
+            <%= "退会済" %>
+          <% end %>
+          </td> 
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
