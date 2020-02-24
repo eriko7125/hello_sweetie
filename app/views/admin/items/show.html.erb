@@ -1,0 +1,47 @@
+<div class="row">
+  <div class="col-10 offset-1">
+    <h1>アイテム詳細</h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-3 offset-1">
+    <%= link_to "アイテム一覧へ戻る", admin_items_path, class:'btn-sm btn-primary' %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-5 offset-1">
+    <div class="field">
+      <label for="item_image">Image</label>
+      <%= attachment_image_tag @item, :image, :fill, 400, 300, format: "jpeg" %>
+    </div>
+  </div>
+  <div class="col-5">
+    <table class="table table-borderless">
+      <tr>
+        <th width="150"><label>アイテム名</label></th>
+        <td><%= @item.name %></td>
+      </tr>
+      <tr>
+        <th><label>アイテム説明</label></th>
+        <td><%= @item.caption %></td>
+      </tr>
+      <tr>
+        <th><label>ジャンル</label></th>
+        <td><%= @item.genre.name %></td>
+      </tr>
+      <tr>
+        <th><label>税込価格</label></th>
+        <td><%= @item.price %></td>
+      </tr>
+      <tr>
+        <th><label>販売ステータス</label></th>
+        <td><%= @item.status %></td>
+      <tr>
+        <td><%= link_to "編集する", edit_admin_item_path(@item), class:'btn btn-primary' %></td>
+        <td></td>
+      </tr>
+    </table>
+  </div>
+</div

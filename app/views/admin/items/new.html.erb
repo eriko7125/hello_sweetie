@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="col-10 offset-1">
+    <h1>アイテム追加</h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-3 offset-1">
+    <%= link_to "アイテム一覧へ戻る", admin_items_path, class:'btn-sm btn-primary' %>
+  </div>
+</div>
+
+  <%= form_for(@item, url:admin_items_path) do |f| %>
+  <div class="row">
+    <div class="col-4 offset-1">
+      <div class="field">
+        <label for="item_image">Image</label>
+        <%= f.attachment_field :image, placeholder: "Item Image" %>
+      </div>
+    </div>
+    <div class="col-6">
+      <table class="table table-borderless">
+        <tr>
+          <th><%= f.label :name, "アイテム名" %></th>
+          <td><%= f.text_field :name %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :caption, "アイテム説明" %></th>
+          <td><%= f.text_area :caption %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :genre_id, "ジャンル" %></th>
+          <td><%= f.collection_select :genre_id, Genre.all, :id, :name %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :price, "税込価格" %></th>
+          <td><%= f.number_field :price %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :status, "販売ステータス" %></th>
+          <td><%= f.radio_button :status, :販売中, class: "mr-2" %><%= f.label "販売中", class: "mr-2" %>
+          <%= f.radio_button :status, :販売停止中, class: "mr-2" %><%= f.label "販売停止中" %></td>
+        <tr>
+          <td><%= f.submit "新規登録", class: "btn btn-primary" %></td><td></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+<% end %>
