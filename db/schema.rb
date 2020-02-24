@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_19_124917) do
+ActiveRecord::Schema.define(version: 2020_02_24_101032) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "name", null: false
@@ -40,14 +40,8 @@ ActiveRecord::Schema.define(version: 2020_02_19_124917) do
     t.string "size", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "designs", force: :cascade do |t|
-    t.integer "item_id", null: false
-    t.integer "material_id", null: false
-    t.integer "ribbon_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer "material_id"
+    t.integer "ribbon_id"
   end
 
   create_table "end_users", force: :cascade do |t|
@@ -80,7 +74,6 @@ ActiveRecord::Schema.define(version: 2020_02_19_124917) do
   create_table "items", force: :cascade do |t|
     t.string "name", null: false
     t.integer "genre_id", null: false
-    t.integer "design_id", null: false
     t.integer "status", default: 1, null: false
     t.text "caption", null: false
     t.integer "price", null: false

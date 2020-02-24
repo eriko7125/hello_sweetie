@@ -1,13 +1,13 @@
 require 'test_helper'
 
-class Admins::GenresControllerTest < ActionDispatch::IntegrationTest
+class Admin::GenresControllerTest < ActionDispatch::IntegrationTest
   test "should get index" do
-    get admins_genres_index_url
+    get admin_genres_index_url
     assert_response :success
   end
 
   test "should get edit" do
-    get admins_genres_edit_url
+    get admin_genres_edit_url
     assert_response :success
   end
 

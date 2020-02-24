@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-8 offset-2">
+    <h1>リボン編集</h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-8 offset-2">
+    <%= form_for @ribbon, url: admin_ribbon_path do |f| %>
+    <table class="table">
+      <tr>
+        <th><label for="ribbon-color">リボン名</label></th>
+        <td><%= f.text_field :color, size: 40 %></td>
+      </tr>
+      <tr>
+        <th>利用状態</th>
+        <td><%= f.radio_button :status, :有効 %> <%= f.label "有効", class: "mr-4" %>
+        <%= f.radio_button :status, :無効 %> <%= f.label "無効" %></td>
+      </tr>
+      <tr>
+        <th><label for="ribbon_image">リボン画像</label></th>
+        <td><%= attachment_image_tag @ribbon, :image, :fill, 150, 100, format: 'jpeg' %>
+        <%= f.attachment_field :image, placeholder: "ribbon Image" %></td>
+      </tr>
+      <tr>
+        <td><%= f.submit "変更を保存する", class: "btn btn-primary" %><td><td></td>
+      </tr>
+    </table>
+    <% end %>
+  </div>
+</div>
