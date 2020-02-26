@@ -14,7 +14,7 @@
   <div class="col-5 offset-1">
     <div class="field">
       <label for="item_image">Image</label>
-      <%= attachment_image_tag @item, :image, :fill, 400, 300, format: "jpeg" %>
+      <%= attachment_image_tag @item, :image, :fill, 400, 400, format: "jpeg" %>
     </div>
   </div>
   <div class="col-5">
@@ -25,7 +25,7 @@
       </tr>
       <tr>
         <th><label>アイテム説明</label></th>
-        <td><%= @item.caption %></td>
+        <td><%= simple_format(@item.caption) %></td>
       </tr>
       <tr>
         <th><label>ジャンル</label></th>

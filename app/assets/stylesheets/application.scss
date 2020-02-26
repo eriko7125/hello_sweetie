@@ -26,6 +26,11 @@
 body {
   font-family: 'M PLUS Rounded 1c', sans-serif;
   color: #33131a;
+  // min-height: 100vh;
+  // background-image: url(bg_img.jpg);
+  // background-attachment: fixed;
+  // background-size: cover;
+  // background-position: center;
 }
 
 a:link {color:#da536e; text-decoration:none }
@@ -40,6 +45,13 @@ a:active { color:white; text-decoration:none }
 
 .icon-class {
   font-size: 50px;
+}
+
+header {
+  width: 100%;
+  height: 200px;
+  padding-top: 10px;
+  background: linear-gradient(#cc4e67, white);
 }
 
 footer {
@@ -102,10 +114,15 @@ li {
 }
 // 
 
+// TOPのskipprのみ画面幅で表示
+.container-full {
+  margin-right: -165px;
+  margin-left: -165px;
+}
+
 .sk-image {
   height: 500px;
   width: 100%;
-  border-radius: 20px;
 }
 
 #sk_img_1 {
@@ -126,5 +143,14 @@ li {
 
 #sk_img_5 {
   background-image: url("sk/sk_img_5.jpg");
+}
+
+// 商品詳細の生地・リボン一覧画像
+.design-select {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-style: groove;
 }
 

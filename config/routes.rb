@@ -2,7 +2,6 @@ Rails.application.routes.draw do
 
   get 'orders/index'
   get 'orders/show'
-  get 'cart_items/index'
   get 'cart_items/input'
   get 'cart_items/display'
   get 'cart_items/thanks'
@@ -15,6 +14,7 @@ Rails.application.routes.draw do
   resources :items, only: [:index, :show, :create]
   resources :genres, only: [:show]
   resources :orders, only: [:index, :show, :create]
+  resources :cart_items, only: [:index, :create, :update, :destroy]
 
   #admin_users devise & end_users devise
   devise_for :admin_users, controllers: {
