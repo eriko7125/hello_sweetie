@@ -75,3 +75,6 @@ gem 'font-awesome-sass', '~> 5.4.1'
 # image
 gem "refile", require: "refile/rails", github: "manfe/refile"
 gem "refile-mini_magick"
+
+# pagination
+gem "kaminari"
