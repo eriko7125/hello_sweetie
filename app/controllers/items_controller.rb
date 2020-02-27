@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   def index
-    @items = Item.all.order(status: :desc)
+    @items = Item.all
     @items = Item.page(params[:page]).per(12)
 
     @genres = Genre.all
