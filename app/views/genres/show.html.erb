@@ -1,4 +1,4 @@
-<ul class="nav navbar">
+<ul class="nav navbar item-genre">
   <li><%= link_to "全てのアイテム", items_path %></li>
   <% @genres.each do |genre|%>
     <%= link_to genre_path(genre.id) do %>
