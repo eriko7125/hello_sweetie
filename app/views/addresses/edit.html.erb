@@ -1,2 +1,27 @@
-<h1>Addresses#edit</h1>
-<p>Find me in app/views/addresses/edit.html.erb</p>
+<div class="row">
+  <div class="col-8 offset-2">
+    <h1>配送先編集</h1>
+  </div>
+</div>
+
+<%= form_for @address do |f| %>
+  <div class="row">
+    <div class="col-8 offset-2">
+      <table class="table table-bordered">
+        <tr>
+          <th>郵便番号</th>
+          <td><%= f.text_field :zipcode, size: "10"  %></td>
+        </tr>
+        <tr>
+          <th>住所</th>
+          <td><%= f.text_field :address, size: "60" %></td>
+        </tr>
+        <tr>
+          <th>宛名</th>
+          <td><%= f.text_field :name %></td>
+        </tr>
+      </table>
+      <%= f.submit '編集する',class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>
