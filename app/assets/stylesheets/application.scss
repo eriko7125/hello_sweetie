@@ -42,7 +42,15 @@ a:active { color:white; text-decoration:none }
   height: 60px;
   width: 100%;
 }
-
+.navbar-text {
+  color: #33131a;
+  font-size: large;
+}
+.item-genre li {
+  padding: 5px 10px 5px 10px;
+  border: 4px dotted;
+  border-radius: 20px;
+}
 .icon-class {
   font-size: 50px;
 }

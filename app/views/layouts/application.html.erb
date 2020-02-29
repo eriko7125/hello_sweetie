@@ -27,11 +27,9 @@
           </ul>
         <% elsif end_user_signed_in? %>
         <%# ec signin header %>
-          <nav class="navbar-text">
-            <span class = "fas fa-dog" > Hello, <%= link_to current_end_user.first_name, end_user_path(current_end_user) %>!</span>
-          </nav>
+          <nav class="navbar-text fas fa-dog"> Hello, <%= link_to current_end_user.first_name, end_user_path(current_end_user) %>!</nav>
           <nav class="nav justify-content-center">
-            <%= image_tag "logo.png" %>
+            <%= image_tag "logo2.png" %>
           </nav>
           <nav class="nav justify-content-end">
           <li><%= link_to "カート　", cart_items_path, class: "fas fa-shopping-cart" %></li>
@@ -39,11 +37,9 @@
           </nav>
         <% else %>
         <%# ec signout header %>
-          <nav class="navbar-text">
-            <span class ="fas fa-user" > Hello, Guest！</span>
-          </nav>
+          <nav class="navbar-text fas fa-user"> Hello, Guest！</nav>
           <nav class="nav justify-content-center">
-            <%= image_tag "logo.png" %>
+            <%= image_tag "logo2.png" %>
           </nav>
           <ul class="nav justify-content-end">
             <li><%= link_to " ログイン　", new_end_user_session_path, class: "fas fa-sign-in-alt" %></li>
@@ -54,7 +50,7 @@
 
     <%# menu %>
     <ul class="nav navbar">
-      <li><%= link_to " HOME", root_path, :class => "fas fa-home" %></li>
+      <li><%= link_to " HOME", root_path, class: "fas fa-home" %></li>
       <li><%= link_to " 初めての方へ", homes_about_path, class: "fas fa-paw" %></li>
       <li><%= link_to " アイテム一覧へ", items_path, class: "fas fa-tshirt" %></li>
       <li><%= link_to "", "#" %></li>
