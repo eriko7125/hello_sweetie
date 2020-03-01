@@ -1,2 +1,60 @@
-<h1>CartItems#index</h1>
-<p>Find me in app/views/cart_items/index.html.erb</p>
+<div class="row">
+  <div class="col-12">
+    <h1>ショッピングカート</h1>
+    <div class="col-2 offset-10">
+      <%= link_to 'カートを空にする', cart_item_destroy_all_path, method: :delete, data: {confirm: 'カートを空にしてよろしいですか？'}, class: "btn-sm btn-primary" %>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>商品名</th>
+          <th>生地</th>
+          <th>リボン</th>
+          <th>税込価格</th>
+          <th>サイズ</th>
+          <th></th>
+        </tr>
+      </thead>
+      <% @cart_items.each do |cart_item| %>
+        <tr>
+          <td><%= attachment_image_tag cart_item[:cart_item].item,:image, :fill, 50, 50 %><%= cart_item[:cart_item].item.name %></td>
+          <td class="small"><%= attachment_image_tag cart_item[:material],:image, :fill, 40, 30 %>
+          <br><%= cart_item[:material].name %></td>
+          <td class="small"><%= attachment_image_tag cart_item[:ribbon], :image, :fill, 40, 30 %>
+          <br><%= cart_item[:ribbon].color %></td>
+          <td>¥ <%= cart_item[:cart_item].item.price %></td>
+          <%= form_for cart_item[:cart_item] do |f|%> 
+            <td><%= f.select :size, [["SS","SS"], ["S","S"], ["M","M"], ["L","L"], ["DM","DM"]] %>
+            <%= f.submit "変更", class: "btn btn-primary"%></td>
+          <% end %>
+          <td><%= link_to '削除する', cart_item_path(cart_item[:cart_item]), method: :delete, data: {confirm: '商品を削除してよろしいですか？'}, class: "btn-sm btn-primary" %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <%= link_to '買い物を続ける', items_path, class: "btn btn-primary" %>
+    <div class="offset-9">
+      <table class="table table-bordered">
+        <tr>
+          <th>合計金額</th>
+          <td>¥ <%= @cart_items_sum_price %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-2 offset-5">
+    <%= link_to '配送先を入力', orders_input_address_path, class: "btn btn-primary" %>
+  </div>
+</div>
