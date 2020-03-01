@@ -1,21 +1,5 @@
 Rails.application.routes.draw do
 
-  get 'orders/index'
-  get 'orders/show'
-  get 'cart_items/input'
-  get 'cart_items/display'
-  get 'cart_items/thanks'
-  
-  # top page
-  root 'homes#top'
-  get 'homes/about'
-
-  # ec page
-  resources :items, only: [:index, :show, :create]
-  resources :genres, only: [:show]
-  resources :orders, only: [:index, :show, :create]
-  resources :cart_items, only: [:index, :create, :update, :destroy]
-
   #admin_users devise & end_users devise
   devise_for :admin_users, controllers: {
     sessions:      'admin_users/sessions',
@@ -28,13 +12,28 @@ Rails.application.routes.draw do
     registrations: 'end_users/registrations'
   }
 
-  # end_user page
+  # top page
+  root 'homes#top'
+  get 'homes/about'
+  
+  # ec page
+  resources :items, only: [:index, :show]
+  resources :genres, only: [:show]
+  delete 'cart_item/destroy_all', to: 'cart_items#destroy_all'
+  resources :cart_items, only: [:index, :create, :update, :destroy]
+  get 'orders/input_address' to: 'orders#input_address'
+  post 'orders/create_address', to: 'orders#create_address'
+  get 'orders/display', to: 'orders#display'
+  get 'orders/thanks', to: 'orders#thanks'
+  resources :orders, only: [:index, :show, :create]
+  
+  # end_user mypage
   resources :end_users, only: [:show, :edit, :update, :destroy] do
     collection do
       get :confirm
     end
   end
-
+  
   # admin page
   namespace :admin do
     resources :items, only: [:index, :show, :new, :edit, :create, :update]
@@ -45,8 +44,8 @@ Rails.application.routes.draw do
     resources :order_details, only: [:update]
     resources :end_users, only: [:index]
   end
-
+  
+  # shipping address
   resources :addresses, only: [:index, :edit, :create, :update, :destroy]
-
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

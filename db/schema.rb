@@ -41,6 +41,7 @@ ActiveRecord::Schema.define(version: 2020_02_25_123036) do
     t.datetime "updated_at", null: false
     t.integer "material_id"
     t.integer "ribbon_id"
+    t.string "size"
   end
 
   create_table "end_users", force: :cascade do |t|
