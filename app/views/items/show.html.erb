@@ -22,11 +22,11 @@
 <%# アイテムステータスが「販売中」の場合、カートに追加可能 %>
 <% if @item.status == "販売中" %>
   <%= form_for @cart_item do |f| %>
-  </div>
-  <div class="col-5 offset-6">
-  <label>サイズを選択</label>
-    <h2><%= f.select :size,  [["SS","SS"], ["S","S"], ["M","M"], ["L","L"], ["DM","DM"]] %>　<%= link_to "　サイズ選びについて", homes_about_path %></h2>
-    </div>
+    <div class="row">
+      <div class="col-5 offset-6">
+        <label>サイズを選択</label>
+        <h2><%= f.select :size,  [["SS","SS"], ["S","S"], ["M","M"], ["L","L"], ["DM","DM"]] %>　<%= link_to "　サイズ選びについて",  homes_about_path %></h2>
+      </div>
     </div>
     <div class="row">
       <div class="col-2 offset-1 text-right">
@@ -45,7 +45,6 @@
         <h2><strong><%= f.collection_select :material_id, Material.where(status: 1), :id, :name %></strong></h2>
       </div>
     </div>
-
     <div class="row">
       <div class="col-2 offset-1 text-right">
         <label>リボン一覧</label>
@@ -63,7 +62,7 @@
         <h2><strong><%= f.collection_select :ribbon_id, Ribbon.where(status: 1), :id, :color %></strong></h2>
       </div>
     </div>
-
+  
     <div class="row">
       <div class="col-10 offset-1 text-center">
         <%= f.hidden_field :item_id, :value => @item.id %>

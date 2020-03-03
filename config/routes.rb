@@ -21,8 +21,9 @@ Rails.application.routes.draw do
   resources :genres, only: [:show]
   delete 'cart_item/destroy_all', to: 'cart_items#destroy_all'
   resources :cart_items, only: [:index, :create, :update, :destroy]
-  get 'orders/input_address' to: 'orders#input_address'
+  get 'orders/input_address', to: 'orders#input_address'
   post 'orders/create_address', to: 'orders#create_address'
+  post 'orders/create_session', to: 'orders#create_session'
   get 'orders/display', to: 'orders#display'
   get 'orders/thanks', to: 'orders#thanks'
   resources :orders, only: [:index, :show, :create]

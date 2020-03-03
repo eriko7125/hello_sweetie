@@ -1,4 +1,6 @@
 class Ribbon < ApplicationRecord
+  has_many :cart_items
+
   attachment :image
 
   #リボンステータスのenum管理
