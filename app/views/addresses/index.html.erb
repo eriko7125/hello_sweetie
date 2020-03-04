@@ -5,6 +5,7 @@
 </div>
 
 <%= form_for @address do |f| %>
+  <%= render 'layouts/error_messages', model: f.object %>
   <div class="row">
     <div class="col-8 offset-2">
       <table class="table table-bordered">

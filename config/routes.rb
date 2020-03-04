@@ -41,8 +41,8 @@ Rails.application.routes.draw do
     resources :genres, only: [:index, :edit, :update, :create]
     resources :materials, only: [:index, :edit, :update, :create]
     resources :ribbons, only: [:index, :edit, :update, :create]
+    patch 'orders/:id/production', to: 'orders#production_update', as: 'order_production'
     resources :orders, only: [:index, :show, :update]
-    resources :order_details, only: [:update]
     resources :end_users, only: [:index]
   end
   

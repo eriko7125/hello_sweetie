@@ -44,7 +44,7 @@ class OrdersController < ApplicationController
       cart_items_sum_price += cart_item.item.price
     end
     order.sum_price = cart_items_sum_price
-    order.shipping_price = 800
+    order.shipping_price = 830
     order.payment_price = order.sum_price + order.shipping_price
     order.save
     
@@ -70,32 +70,23 @@ class OrdersController < ApplicationController
   def display
     @order = Order.new
     @current_cart_items = CartItem.where(end_user_id: current_end_user.id)
-    @cart_items = []
-    @current_cart_items.each do |cart_item|
-      hash = { 
-        cart_item: cart_item,
-        material: Material.find(cart_item.material_id),
-        ribbon: Ribbon.find(cart_item.ribbon_id)
-      }
-      @cart_items.push(hash)
-    end
-
     @cart_items_sum_price = 0
     @current_cart_items.each do |cart_item|
       @cart_items_sum_price += cart_item.item.price
     end
-    @shipping_price = 800
+    @shipping_price = 830
   end
 
   def thanks
-    
   end
 
   
   def index
+    @orders = current_end_user.orders
   end
 
   def show
+    @order = Order.find(params[:id])
   end
 
   private

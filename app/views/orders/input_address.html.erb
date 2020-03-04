@@ -9,8 +9,8 @@
       <p>
         <%= f.radio_button :select, :main_address %>
         <%= label_tag "ご自身の住所" %><br>
-        <%="〒"%><%= current_end_user.zipcode %><%="\n"%><%= current_end_user.address %><br>
-        <%= current_end_user.last_name %><%="\n"%><%= current_end_user.first_name %>
+        <%="〒" %><%= current_end_user.zipcode.insert(3,"-") %> <%= current_end_user.address %><br>
+        <%= current_end_user.last_name %> <%= current_end_user.first_name %>
       </p>
       <p>
         <%= f.radio_button :select, :sub_address %>

@@ -10,7 +10,7 @@
 <div class="row">
   <div class="col-12">
     <table class="table table-bordered">
-      <thead>
+      <thead class="thead-light">
         <tr>
           <th>商品名</th>
           <th>生地</th>
@@ -27,14 +27,14 @@
           <br><%= cart_item.material.name %></td>
           <td class="small"><%= attachment_image_tag cart_item.ribbon, :image, :fill, 40, 30 %>
           <br><%= cart_item.ribbon.color %></td>
-          <td>¥ <%= cart_item.item.price %></td>
-          <td>
+          <td class="align-middle"><%= converting_to_jpy(cart_item.item.price) %></td>
+          <td class="align-middle">
             <%= form_for cart_item do |f|%> 
               <%= f.select :size, [["SS","SS"], ["S","S"], ["M","M"], ["L","L"], ["DM","DM"]] %>
               <%= f.submit "変更", class: "btn btn-primary"%>
             <% end %>
           </td>
-          <td><%= link_to '削除する', cart_item_path(cart_item), method: :delete, data: {confirm: '商品を削除してよろしいですか？'}, class: "btn-sm btn-primary" %></td>
+          <td class="align-middle"><%= link_to '削除する', cart_item_path(cart_item), method: :delete, data: {confirm: '商品を削除してよろしいですか？'}, class: "btn-sm btn-primary" %></td>
         </tr>
       <% end %>
     </table>
@@ -48,7 +48,7 @@
       <table class="table table-bordered">
         <tr>
           <th>合計金額</th>
-          <td>¥ <%= @cart_items_sum_price %></td>
+          <td><%= converting_to_jpy(@cart_items_sum_price) %></td>
         </tr>
       </table>
     </div>

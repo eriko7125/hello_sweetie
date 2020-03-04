@@ -6,39 +6,39 @@
 <div class="row">
   <div class="col-12">
     <table class="table table-bordered">
-      <thead class="thead-light">
+      <thead class="table-active">
         <tr>
           <th>商品名</th>
           <th>生地</th>
           <th>リボン</th>
-          <th>税込価格</th>
+          <th>販売価格</th>
           <th>サイズ</th>
         </tr>
       </thead>
       <% @cart_items.each do |cart_item| %>
         <tr>
-          <td><%= attachment_image_tag cart_item[:cart_item].item,:image, :fill, 50, 50 %><%= cart_item[:cart_item].item.name %></td>
-          <td class="small"><%= attachment_image_tag cart_item[:material],:image, :fill, 40, 30 %>
-          <br><%= cart_item[:material].name %></td>
-          <td class="small"><%= attachment_image_tag cart_item[:ribbon], :image, :fill, 40, 30 %>
-          <br><%= cart_item[:ribbon].color %></td>
-          <td>¥ <%= cart_item[:cart_item].item.price %></td>
-          <td><%= cart_item[:cart_item].size %></td>
+          <td><%= attachment_image_tag cart_item.item,:image, :fill, 50, 50 %><%= cart_item.item.name %></td>
+          <td class="small"><%= attachment_image_tag cart_item.material,:image, :fill, 40, 30 %>
+          <br><%= cart_item.material.name %></td>
+          <td class="small"><%= attachment_image_tag cart_item.ribbon, :image, :fill, 40, 30 %>
+          <br><%= cart_item.ribbon.color %></td>
+          <td class="align-middle"><%= converting_to_jpy(cart_item.item.price) %></td>
+          <td class="align-middle"><%= cart_item.size %></td>
         </tr>
       <% end %>
     </table>
   </div>
 </div>
 <div class="row">
-  <div class="col-6 offset-6">
+  <div class="col-7 offset-5">
     <table class="table table-bordered">
       <tr>
-        <th class="table-active">送料</th>
-        <td>¥ <%= @shipping_price %></td>
         <th class="table-active">商品合計</th>
-        <td>¥ <%= @cart_items_sum_price %></td>
+        <td><%= converting_to_jpy(@cart_items_sum_price) %></td>
+        <th class="table-active">送料</th>
+        <td><%= @shipping_price %>円</td>
         <th class="table-active">請求金額</th>
-        <td>¥ <%= @shipping_price + @cart_items_sum_price %></td>
+        <td><%= converting_to_jpy(@shipping_price + @cart_items_sum_price) %></td>
       </tr>
     </table>
   </div>
@@ -46,7 +46,7 @@
 <div class="row">
   <div class="col-12">
     <h2>◆お届け先</h2>
-    <%= session[:zipcode] %>　<%= session[:address] %>　<%= session[:name] %> 様<p>
+    <%="〒"%><%= session[:zipcode].insert(3,"-") %>　<%= session[:address] %>　<%= session[:name] %> 様<p>
   </div>
 </div>
 <div class="row">
