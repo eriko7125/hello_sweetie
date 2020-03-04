@@ -1,4 +1,6 @@
 class Material < ApplicationRecord
+  has_many :cart_items
+  
   attachment :image
 
   #生地ステータスのenum管理

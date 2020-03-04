@@ -1,2 +1,71 @@
-<h1>Orders#show</h1>
-<p>Find me in app/views/orders/show.html.erb</p>
+<div class="row">
+  <div class="col-12">
+    <h1>注文履歴詳細</h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-6">
+    <h2>注文情報</h2>
+    <table class="table table-bordered">
+      <tr>
+        <th class="table-active">注文日</th>
+        <td><%= @order.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+      </tr>
+      <tr>
+        <th class="table-active">配送先</th>
+        <td>〒<%= @order.zipcode %> <%# sessionで"-"入力済 %>
+          <br><%= @order.address %>
+          <br><%= @order.name %> 様
+        </td>
+      </tr>
+      <tr>
+        <th class="table-active">ステータス</th>
+        <td><%= @order.status %></td>
+      </tr>
+    </table>
+  </div>
+
+  <div class="col-4 offset-2">
+    <h2>請求情報</h2>
+    <table class="table table-bordered">
+      <tr>
+        <th class="table-active">商品合計</th>
+        <td><%= converting_to_jpy(@order.sum_price) %></td>
+      </tr>
+      <tr>
+        <th class="table-active">配送料</th>
+        <td><%= converting_to_jpy_notax(@order.shipping_price) %></td>
+      <tr>
+        <th class="table-active">ご請求額</th>
+        <td><%= converting_to_jpy(@order.payment_price) %></td>
+      </tr>
+    </table>
+  </div>
+</div>
+  
+<div class="row">
+  <div class="col-12">
+    <h2>注文内容</h2>
+    <table class="table table-bordered">
+      <thead>
+        <tr class="table-active">
+          <th>商品</th>
+          <th>生地</th>
+          <th>リボン</th>
+          <th>販売価格</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @order.order_details.each do |order_detail| %>
+          <tr>
+            <td><%= order_detail.item_name %></td>
+            <td><%= order_detail.material_name %></td>
+            <td><%= order_detail.ribbon_color %></td>
+            <td><%= converting_to_jpy(order_detail.price) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

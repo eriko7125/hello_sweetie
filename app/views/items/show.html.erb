@@ -1,32 +1,27 @@
 <div class="row">
   <div class="col-5 offset-1">
     <div class="field">
-      <label for="item_image">Image</label>
       <%= attachment_image_tag @item, :image, :fill, 400, 400, format: "jpeg" %>
     </div>
   </div>
   <div class="col-5">
-      <label>商品名</label>
-      <h2>　<strong><%= @item.name %></strong></h2>
-      <label>商品説明</label>
-      <h2>　<strong><%= simple_format(@item.caption) %></strong></h2>
-      <label>登録ジャンル</label>
-      <h2>　<strong><%= @item.genre.name %></strong></h2>
-      <label>税込価格</label>
-      <h2>　<strong><%= @item.price %></strong></h2>
-      <label>受注状況</label>
-      <h2>　<strong><%= @item.status %></strong></h2>
+      <h1><%= @item.name %></h1>
+      <h2><strong><%= simple_format(@item.caption) %></h2>
+      <label>◆販売価格</label>
+      <h2>　<strong><%= converting_to_jpy(@item.price) %></strong></h2>
+      <h2>登録ジャンル：<strong><%= @item.genre.name %></strong></h2>
+      <h2>受注状況：<strong><%= @item.status %></strong></h2>
   </div>
 </div>
 
 <%# アイテムステータスが「販売中」の場合、カートに追加可能 %>
 <% if @item.status == "販売中" %>
   <%= form_for @cart_item do |f| %>
-  </div>
-  <div class="col-5 offset-6">
-  <label>サイズを選択</label>
-    <h2><%= f.select :size,  [["SS","SS"], ["S","S"], ["M","M"], ["L","L"], ["DM","DM"]] %>　<%= link_to "　サイズ選びについて", homes_about_path %></h2>
-    </div>
+    <div class="row">
+      <div class="col-5 offset-6">
+        <label>◆サイズを選択</label>
+        <h2><%= f.select :size,  [["SS","SS"], ["S","S"], ["M","M"], ["L","L"], ["DM","DM"]] %>　<%= link_to "　サイズ選びにつきまして",  homes_about_path, class:"small" %></h2>
+      </div>
     </div>
     <div class="row">
       <div class="col-2 offset-1 text-right">
@@ -41,11 +36,10 @@
         </div>
       </div>
       <div class="col-5">
-        <label>生地を選択</label>
+        <label>◆生地を選択</label>
         <h2><strong><%= f.collection_select :material_id, Material.where(status: 1), :id, :name %></strong></h2>
       </div>
     </div>
-
     <div class="row">
       <div class="col-2 offset-1 text-right">
         <label>リボン一覧</label>
@@ -59,11 +53,11 @@
         </div>
       </div>
       <div class="col-5">
-        <label>リボンを選択</label>
+        <label>◆リボンを選択</label>
         <h2><strong><%= f.collection_select :ribbon_id, Ribbon.where(status: 1), :id, :color %></strong></h2>
       </div>
     </div>
-
+  
     <div class="row">
       <div class="col-10 offset-1 text-center">
         <%= f.hidden_field :item_id, :value => @item.id %>
