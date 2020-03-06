@@ -61,16 +61,17 @@
     <div class="row">
       <div class="col-10 offset-1 text-center">
         <%= f.hidden_field :item_id, :value => @item.id %>
-        <%= f.submit "カートに入れる", class:"btn btn-lg btn-primary" %>
+        <p><%= f.submit "カートに入れる", class:"btn btn-lg btn-primary" %></p>
+        <p><%= link_to "戻る", :back %></p>
       </div>
     </div>
   <% end %>
 
 <%# アイテムステータスが「販売停止中」の場合、戻るボタンを表示 %>
 <% else @item.status == "販売停止中" %>
-  <div class="row">
+  <p><div class="row">
     <div class="col-10 offset-1 text-center">
       <%= link_to "アイテム一覧へ戻る", items_path, class: "btn btn-primary" %>
     </div>
-  </div>
+  </div></p>
 <% end %>

@@ -7,6 +7,7 @@
 <div class="row">
   <div class="col-8 offset-2">
     <%= form_for @material, url: admin_material_path do |f| %>
+    <%= render 'layouts/error_messages', model: f.object %>
       <table class="table">
         <tr>
         <th><label for="material_name">生地名</label></th>
@@ -24,10 +25,10 @@
           <td><%= attachment_image_tag @material, :image, :fill, 150, 100, format: 'jpeg' %>
           <%= f.attachment_field :image, placeholder: "material Image" %></td>
         </tr>
-        <tr>
-          <td><%= f.submit "変更を保存する", class: "btn btn-primary" %></td><td></td>
-        </tr>
       </table>
+      <p><%= f.submit "変更を保存する", class: "btn btn-primary mx-auto d-block" %></p>
     <% end %>
   </div>
 </div>
+
+<p class="text-center"><%= link_to "戻る", admin_materials_path %></p>

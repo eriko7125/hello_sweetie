@@ -8,7 +8,7 @@
   <div class="col-5 offset-1">
     <h4><strong>登録情報</strong>
       <%= link_to '編集する', edit_end_user_path(current_end_user.id), class:"btn btn-primary" %>
-      <%= link_to 'パスワードを変更する',   edit_end_user_registration_path, class:"btn btn-primary" %>
+      <%= link_to 'パスワードを変更する', edit_end_user_registration_path, class:"btn btn-primary" %>
     </h4>
     <table class="table table-bordered ">
       <tr>
@@ -16,13 +16,13 @@
         <td><%= @end_user.last_name %> <%= @end_user.first_name %></td>
       </tr>
       <tr>
-        <td>カナ</td>
+        <td>ﾌﾘｶﾞﾅ</td>
         <td><%= @end_user.last_name_kana %> <%= @end_user.first_name_kana %>
         </td>
       </tr>
       <tr>
         <td>郵便番号</td>
-        <td>〒<%= @end_user.zipcode %></td>
+        <td>〒<%= @end_user.zipcode.insert(3, "-") %></td>
       </tr>
       <tr>
         <td>住所</td>
@@ -39,9 +39,7 @@
     </table>
   </div>
   <div class="col-3 offset-1">
-    <%# 配送先一覧の path を記述（addresses index）%>
     <h4><strong>配送先　　　</strong><%= link_to '一覧を見る', addresses_path, class:"btn btn-primary" %> </h4>
-    <%# 注文履歴一覧の path を記述（orders index） %>
     <h4><strong>注文履歴　　</strong><%= link_to '一覧を見る', orders_path, class:"btn btn-primary" %> </h4>
   </div>
 </div>

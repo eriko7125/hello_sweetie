@@ -15,7 +15,7 @@
       <p>
         <%= f.radio_button :select, :sub_address %>
         <%= label_tag  "ご登録済みの配送先から選択" %><br>
-        <%= f.collection_select(:sub_address_id, @addresses, :id, :input_view_address ) %>
+        <%= f.collection_select(:sub_address_id, current_end_user.addresses, :id, :input_view_address ) %>
       </p>
       </p>
       <div class="row">

@@ -7,6 +7,7 @@
 <div class="row">
   <div class="col-8 offset-2">
     <%= form_for @ribbon, url: admin_ribbon_path do |f| %>
+    <%= render 'layouts/error_messages', model: f.object %>
     <table class="table">
       <tr>
         <th><label for="ribbon-color">リボン名</label></th>
@@ -22,10 +23,10 @@
         <td><%= attachment_image_tag @ribbon, :image, :fill, 150, 100, format: 'jpeg' %>
         <%= f.attachment_field :image, placeholder: "ribbon Image" %></td>
       </tr>
-      <tr>
-        <td><%= f.submit "変更を保存する", class: "btn btn-primary" %><td><td></td>
-      </tr>
     </table>
+    <p><%= f.submit "変更を保存する", class: "btn btn-primary mx-auto d-block" %></p>
     <% end %>
   </div>
 </div>
+
+<p class="text-center"><%= link_to "戻る", admin_ribbons_path %></p>

@@ -1,4 +1,6 @@
 class Admin::RibbonsController < ApplicationController
+  before_action :authenticate_admin_user!
+
   def index
     @ribbon = Ribbon.new
     @ribbons = Ribbon.all
@@ -11,7 +13,7 @@ class Admin::RibbonsController < ApplicationController
   def create
     @ribbon = Ribbon.new(ribbon_params)
     if @ribbon.save
-      redirect_to admin_ribbons_path(@ribbons), notice: "You have creatad ribbon successfully."
+      redirect_to admin_ribbons_path(@ribbons), notice: "【リボンを追加しました】"
     else
       @ribbons = Ribbon.all
       render action: :index
@@ -21,7 +23,7 @@ class Admin::RibbonsController < ApplicationController
   def update
     @ribbon = Ribbon.find(params[:id])
     if @ribbon.update(ribbon_params)
-      redirect_to admin_ribbons_path, notice: "You have updated ribbon successfully."
+      redirect_to admin_ribbons_path, notice: "【リボンを変更しました】"
     else
       render action: :edit
     end
@@ -30,12 +32,5 @@ class Admin::RibbonsController < ApplicationController
   private
   def ribbon_params
     params.require(:ribbon).permit(:color,:image,:status)
-  end
-
-  def ensure_correct_user
-    @ribbon = Ribbon.find_by(id: params[:id])
-    if @ribbon.user_id != current_user.id
-      redirect_to root_path
-    end
   end
 end

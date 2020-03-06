@@ -42,15 +42,13 @@ a:active { color:white; text-decoration:none }
   height: 60px;
   width: 100%;
 }
+
 .navbar-text {
   color: #33131a;
   font-size: large;
 }
-.item-genre li {
-  padding: 5px 10px 5px 10px;
-  border: 4px dotted;
-  border-radius: 20px;
-}
+
+
 .icon-class {
   font-size: 50px;
 }
@@ -120,7 +118,6 @@ li {
   background-color: #d9abd6;
   border-color: #d9abd6;
 }
-// 
 
 // TOPのskipprのみ画面幅で表示
 .container-full {
@@ -132,7 +129,6 @@ li {
   height: 500px;
   width: 100%;
 }
-// 
 
 // 商品詳細の生地・リボン一覧画像
 .design-select {
@@ -143,3 +139,29 @@ li {
   border-style: groove;
 }
 
+// ページネーション自体のデザイン
+.pagination>li>a {
+  color:#da536e;
+  background: #fff;
+}
+
+// 表示しているページ番号のデザイン
+.pagination>.active>a {
+  color: #fff;
+  background-color: #d9abd6;
+  border-color: #d9abd6;
+}
+
+// ホバー時のデザイン
+.pagination>li>a:hover {
+  color: #fff;
+  background-color: #d98293;
+  border-color: #d98293;
+}
+
+// ジャンル別の表示
+.item-genre li {
+  padding: 5px 10px 5px 10px;
+  border: 4px double;
+  border-radius: 20px;
+}

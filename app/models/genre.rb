@@ -1,10 +1,13 @@
 class Genre < ApplicationRecord
   has_many :items
-
-  #ジャンルステータスのenum管理
-  enum status: { "無効": 0, "有効": 1 }
-
-  #ジャンル名の空欄登録を無効化
   validates :name, presence:true
 
+  enum status: { "無効": 0, "有効": 1 }
+
+  #ジャンルが無効の場合アイテムを販売停止中にする
+  after_update do
+    if self.status == "無効"
+      self.items.each {|item| item.update(status: "販売停止中")}
+    end
+  end
 end

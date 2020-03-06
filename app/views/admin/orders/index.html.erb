@@ -27,8 +27,8 @@
             <td><%= link_to order.created_at.strftime("%Y-%m-%d %H:%M"), admin_order_path(order) %></td>
             <td><%= order.name %></td>
             <td><% order.order_details.each do |item| %>
-              ◆<%= item.item_name %><br>
-              生地：<%= item.material_name %>、リボン：<%= item.ribbon_color %><br>
+              ◆<%= item.item_name %><span class="small">　サイズ：<%= item.size %></span><br>
+              <span class="small">生地：<%= item.material_name %>、リボン：<%= item.ribbon_color %></span><br>
             <% end %></td>
             <td><%= order.status %></td>
           </tr>
