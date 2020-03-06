@@ -13,7 +13,7 @@ class Admin::GenresController < ApplicationController
   def create
     @genre = Genre.new(genre_params)
     if @genre.save
-      redirect_to admin_genres_path(@genres), notice: "You have creatad genre successfully."
+      redirect_to admin_genres_path(@genres), notice: "【ジャンルを追加しました】"
     else
       @genres = Genre.all
       render action: :index
@@ -23,7 +23,7 @@ class Admin::GenresController < ApplicationController
   def update
     @genre = Genre.find(params[:id])
     if @genre.update(genre_params)
-      redirect_to admin_genres_path, notice: "You have updated genre successfully."
+      redirect_to admin_genres_path, notice: "【ジャンルを変更しました】"
     else
       render action: :edit
     end
@@ -32,12 +32,5 @@ class Admin::GenresController < ApplicationController
   private
   def genre_params
     params.require(:genre).permit(:name,:status)
-  end
-
-  def ensure_correct_user
-    @genre = Genre.find_by(id: params[:id])
-    if @genre.user_id != current_user.id
-      redirect_to root_path
-    end
   end
 end

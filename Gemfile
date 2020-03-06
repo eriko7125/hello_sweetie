@@ -86,3 +86,5 @@ group :production do
 end
 
 gem 'paranoia'
+
+gem 'rails-i18n'

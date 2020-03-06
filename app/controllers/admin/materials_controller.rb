@@ -1,4 +1,6 @@
 class Admin::MaterialsController < ApplicationController
+  before_action :authenticate_admin_user!
+
   def index
     @material = Material.new
     @materials = Material.all
@@ -11,7 +13,7 @@ class Admin::MaterialsController < ApplicationController
   def create
     @material = Material.new(material_params)
     if @material.save
-      redirect_to admin_materials_path(@materials), notice: "You have creatad material successfully."
+      redirect_to admin_materials_path(@materials), notice: "【生地を追加しました】"
     else
       @materials = Material.all
       render action: :index
@@ -21,7 +23,7 @@ class Admin::MaterialsController < ApplicationController
   def update
     @material = Material.find(params[:id])
     if @material.update(material_params)
-      redirect_to admin_materials_path, notice: "You have updated material successfully."
+      redirect_to admin_materials_path, notice: "【生地を変更しました】"
     else
       render action: :edit
     end
@@ -30,12 +32,5 @@ class Admin::MaterialsController < ApplicationController
   private
   def material_params
     params.require(:material).permit(:name,:image,:status)
-  end
-
-  def ensure_correct_user
-    @material = Material.find_by(id: params[:id])
-    if @material.user_id != current_user.id
-      redirect_to root_path
-    end
   end
 end

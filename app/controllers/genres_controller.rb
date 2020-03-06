@@ -3,6 +3,6 @@ class GenresController < ApplicationController
     @genres = Genre.all
     @genre = Genre.find(params[:id])
     @items = Item.where(genre_id: @genre)
-    # @items = Item.page(params[:page]).per(12)
+    @items_page = Item.page(params[:page]).per(12).order('created_at DESC')
   end
 end

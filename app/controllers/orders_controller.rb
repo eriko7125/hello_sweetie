@@ -1,6 +1,5 @@
 class OrdersController < ApplicationController
   def input_address
-    @addresses = Address.all
     @address = Address.new
   end
 
@@ -17,13 +16,13 @@ class OrdersController < ApplicationController
       session[:zipcode] = current_end_user.zipcode
       session[:address] = current_end_user.address
       session[:name] = "#{current_end_user.last_name} #{current_end_user.first_name}"
-    elsif params[:select] == "sub_address"
+    else params[:select] == "sub_address"
       sub_address = Address.find(params[:sub_address_id])
       session[:zipcode] = sub_address.zipcode
       session[:address] = sub_address.address
       session[:name] = sub_address.name
     end
-    
+
     if session[:address].present?
       redirect_to orders_display_path
     else
@@ -64,14 +63,14 @@ class OrdersController < ApplicationController
     session.delete(:zipcode)
     session.delete(:address)
     session.delete(:name)
-    redirect_to orders_thanks_path, notice: "購入が完了しました"
+    redirect_to orders_thanks_path, notice: "【購入が完了しました】"
   end
 
   def display
     @order = Order.new
-    @current_cart_items = CartItem.where(end_user_id: current_end_user.id)
+    @cart_items = CartItem.where(end_user_id: current_end_user.id)
     @cart_items_sum_price = 0
-    @current_cart_items.each do |cart_item|
+    @cart_items.each do |cart_item|
       @cart_items_sum_price += cart_item.item.price
     end
     @shipping_price = 830
@@ -80,7 +79,6 @@ class OrdersController < ApplicationController
   def thanks
   end
 
-  
   def index
     @orders = current_end_user.orders
   end
@@ -94,5 +92,4 @@ class OrdersController < ApplicationController
   def address_params
     params.require(:address).permit(:name, :zipcode, :address)
   end
-
 end

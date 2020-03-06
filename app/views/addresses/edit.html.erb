@@ -7,6 +7,7 @@
 <%= form_for @address do |f| %>
   <div class="row">
     <div class="col-8 offset-2">
+    <%= render 'layouts/error_messages', model: f.object %>
       <table class="table table-bordered">
         <tr>
           <th>郵便番号</th>
@@ -21,7 +22,9 @@
           <td><%= f.text_field :name %></td>
         </tr>
       </table>
-      <%= f.submit '編集する',class: "btn btn-primary" %>
+      <p><%= f.submit '編集する',class: "btn btn-primary mx-auto d-block" %></p>
     </div>
   </div>
 <% end %>
+
+<p class="text-center"><%= link_to "戻る", addresses_path %></p>

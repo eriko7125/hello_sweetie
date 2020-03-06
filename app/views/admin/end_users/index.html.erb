@@ -19,7 +19,7 @@
       <% @end_users.each do |user| %>
         <tr>
           <td><%= user.id %></td>
-          <td><%= user.last_name %><%= user.first_name %></td>
+          <td><%= user.last_name %>　<%= user.first_name %>　様</td>
           <td><%= user.phone_number %></td>
           <td><%= user.email %></td>
           <td><% if user.deleted_at == nil %>

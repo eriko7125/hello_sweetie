@@ -1,0 +1,42 @@
+ja:
+  activerecord:
+    models:
+      address:
+      admin_user:
+      end_user:
+      genre:
+      material:
+      ribbon:
+      item:
+    attributes:
+      address:
+        name: 宛名
+        zipcode: 郵便番号
+        address: 住所
+      end_user:
+        last_name: 名字
+        last_name_kana: 名字ｶﾅ
+        first_name: 名前
+        first_name_kana: 名前ｶﾅ
+        zipcode: 郵便番号
+        address: 住所
+        phone_number: 電話番号
+        email: メールアドレス
+        password: パスワード
+        current_password: 現在のパスワード
+      genre:
+        name: ジャンル名
+      material:
+        name: 生地名
+        image: 画像
+      ribbon:
+        color: リボン名
+        image: 画像
+      item:
+        image: 画像
+        name: 商品名
+        caption: 商品説明
+        genre: ジャンル
+        price: 販売価格
+        status: 販売ステータス
+

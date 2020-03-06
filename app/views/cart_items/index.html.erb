@@ -2,7 +2,9 @@
   <div class="col-12">
     <h1>ショッピングカート</h1>
     <div class="col-2 offset-10">
-      <%= link_to 'カートを空にする', cart_item_destroy_all_path, method: :delete, data: {confirm: 'カートを空にしてよろしいですか？'}, class: "btn-sm btn-primary" %>
+      <% if @cart_items != [] %> <%# カートが空のときは非表示 %>
+        <%= link_to 'カートを空にする', cart_item_destroy_all_path, method: :delete, data: {confirm: 'カートを空にしてよろしいですか？'}, class: "btn-sm btn-primary" %>
+      <% end%>
     </div>
   </div>
 </div>
@@ -57,6 +59,8 @@
 
 <div class="row">
   <div class="col-4 offset-5">
-    <%= link_to '配送先の選択へ進む', orders_input_address_path, class: "btn btn-primary" %>
+    <% if @cart_items != [] %> <%# カートが空のときは非表示 %>
+      <%= link_to '配送先の選択へ進む', orders_input_address_path, class: "btn btn-primary" %>
+    <% end%>
   </div>
 </div>

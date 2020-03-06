@@ -1,5 +1,5 @@
 class EndUsersController < ApplicationController
-  before_action :authenticate_end_user!
+  before_action :ensure_end_user, { only: [:show, :edit] }
 
   def show
     @end_user = EndUser.find(params[:id])
@@ -10,17 +10,13 @@ class EndUsersController < ApplicationController
 
   def edit
     @end_user = EndUser.find(params[:id])
-    if @end_user != current_end_user
-      redirect_to end_user_path(current_end_user)
-    end
   end
 
   def update
     @end_user = EndUser.find(params[:id])
-  if@end_user.update(end_user_params)
-    redirect_to end_user_path(@end_user), notice: "You have updatad user successfully."
+  if @end_user.update(end_user_params)
+    redirect_to end_user_path(@end_user), notice: "【登録情報を編集しました】"
   else
-    flash[:alert] = "Save Error!"
     render :edit
   end
 end
@@ -28,12 +24,18 @@ end
 def destroy
   end_user = EndUser.find(params[:id])
   end_user.destroy
-  redirect_to root_path, notice: "Your account was successfully destroyed."
+  redirect_to root_path, notice: "【退会しました】"
 end
 
 private
-    def end_user_params
-      params.require(:end_user).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :zipcode, :address, :phone_number, :email)
-    end
+  def end_user_params
+    params.require(:end_user).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :zipcode, :address, :phone_number, :email)
+  end
 
+  def ensure_end_user
+    @end_user = EndUser.find(params[:id])
+    if current_end_user.id != @end_user.id
+      redirect_to root_path, notice: "【ユーザーログインしてください】"
+    end
+  end
 end

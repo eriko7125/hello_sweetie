@@ -21,7 +21,7 @@
         <% @orders.each do |order| %>
           <tr>
             <td class="align-middle"><%= order.created_at.strftime("%Y-%m-%d %H:%M") %></td>
-            <td class="align-middle">〒<%= order.zipcode.insert(3,"-") %>
+            <td class="align-middle">〒<%= order.zipcode %><%# sessionで"-"入力済 %>
               <br><%= order.address %>
               <br><%= order.name %> 様
             </td>
@@ -39,3 +39,5 @@
     </table>
   </div>
 </div>
+
+<p class="text-center"><%= link_to "戻る", end_user_path(current_end_user) %></p>

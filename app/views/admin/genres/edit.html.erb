@@ -17,10 +17,10 @@
           <td><%= f.radio_button :status, :有効 %><%= f.label "有効", class: "mr-4" %>
           <%= f.radio_button :status, :無効 %><%= f.label "無効" %></td>
         </tr>
-        <tr>
-          <td><%= f.submit "変更を保存する", class: "btn btn-primary" %></td><td></td>
-        </tr>
       </table>
+      <p><%= f.submit "変更を保存する", class: "btn btn-primary mx-auto d-block" %></p>
     <% end %>
   </div>
 </div>
+
+<p class="text-center"><%= link_to "戻る", admin_genres_path %></p>
