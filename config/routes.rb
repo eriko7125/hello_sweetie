@@ -17,7 +17,9 @@ Rails.application.routes.draw do
   get 'homes/about'
   
   # ec page
-  resources :items, only: [:index, :show]
+  resources :items, only: [:index, :show] do
+    resources :likes, only: [:create, :destroy]
+  end
   resources :genres, only: [:show]
   delete 'cart_item/destroy_all', to: 'cart_items#destroy_all'
   resources :cart_items, only: [:index, :create, :update, :destroy]
