@@ -59,37 +59,40 @@
       <li><%= link_to " HOME", root_path, class: "fas fa-home" %></li>
       <li><%= link_to " 初めての方へ", homes_about_path, class: "fas fa-paw" %></li>
       <li><%= link_to " アイテム一覧へ", items_path, class: "fas fa-tshirt" %></li>
-      <li><%= link_to "", "#" %></li>
+      <li><%= link_to " サイズについて", homes_size_path, class: "fas fa-ruler" %></li>
+      <li><%= link_to " お支払い・配送について", homes_ship_pay_path, class: "fas fa-shipping-fast" %></li>
     </ul>
 
   </header>
   
   <div class="container">
-    <p id="notice"><%= notice %></p>
-      <body>
-        <%= yield %>
-      </body>
+    <body>
+      <% flash.each do |name, msg| %>
+        <div class="alert alert-<%= name %>">
+          <%= msg.html_safe %>
+        </div>
+      <% end %>
+      <%= yield %>
+    </body>
   </div>
 
   <footer>
     <ul class="d-flex">
-        <li class="col-2 offset-1"><h6>営業日について</h6>
+        <li class="col-2 offset-1"><h6>◆営業日について</h6>
         土日・祝日を除く
         <br>平日9:00〜18:00</li>
-        <li class="col-2"><h6>お支払いについて</h6>
-        銀行振込 及び 代金引換 のみ
-        <br>対応しております</li>
-        <li class="col-2 align-self-center">© Hello,Sweetie!</li>
-        <li class="col-2"><h6>SNS</h6>
-        <%= link_to "","https://www.instagram.com/liebling_suzu/?hl=ja", :class => "fab fa-instagram icon-class" %>
-        <br>これまでに製作したお洋服や
-        <br>着用画像を投稿しております！</li>
-        <li class="col-2"><h6>サイト管理者<%= link_to "", new_admin_user_session_path, class: "fas fa-wrench" %></h6>
+        <li class="col-5"><h6>◆ Instagram で製作したお洋服や着用画像を投稿しております！</h6>
+        <a href="https://www.instagram.com/liebling_suzu/?hl=ja" class="insta_btn2" style="color:white;">
+          <i class="fab fa-instagram mr-2"></i><span>Liebling Suzu</span>
+        </a></li>
+        <li class="col-2 offset-1"><h6>◆サイト管理者<%= link_to "", new_admin_user_session_path, class: "fas fa-wrench" %></h6>
         〇〇　〇〇
         <br>〒×××-××××
         <br>〇〇県〇〇市〇〇 ×-××-××
+        <br><small>お問い合わせ xx@xx.com</small>
         </li>
     </ul>
+    <p class="text-center">© Hello,Sweetie!</p>
   </footer>
 
 </html>

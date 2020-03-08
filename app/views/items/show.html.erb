@@ -20,7 +20,7 @@
     <div class="row">
       <div class="col-5 offset-6">
         <label>◆サイズを選択</label>
-        <h2><%= f.select :size,  [["SS","SS"], ["S","S"], ["M","M"], ["L","L"], ["DM","DM"]] %>　<%= link_to "　サイズ選びにつきまして",  homes_about_path, class:"small" %></h2>
+        <h2><%= f.select :size,  [["SS"], ["S"], ["M"], ["L"], ["LL"],["DM"]] %>　<%= link_to "　サイズ選びにつきまして",  homes_about_path, class:"small" %></h2>
       </div>
     </div>
     <div class="row">
@@ -57,7 +57,7 @@
         <h2><strong><%= f.collection_select :ribbon_id, Ribbon.where(status: 1), :id, :color %></strong></h2>
       </div>
     </div>
-  
+
     <div class="row">
       <div class="col-10 offset-1 text-center">
         <%= f.hidden_field :item_id, :value => @item.id %>

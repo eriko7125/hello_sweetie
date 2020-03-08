@@ -15,7 +15,7 @@ class EndUsersController < ApplicationController
   def update
     @end_user = EndUser.find(params[:id])
   if @end_user.update(end_user_params)
-    redirect_to end_user_path(@end_user), notice: "【登録情報を編集しました】"
+    redirect_to end_user_path(@end_user), info: "【登録情報を編集しました】"
   else
     render :edit
   end
@@ -24,7 +24,7 @@ end
 def destroy
   end_user = EndUser.find(params[:id])
   end_user.destroy
-  redirect_to root_path, notice: "【退会しました】"
+  redirect_to root_path, danger: "【退会しました】"
 end
 
 private
@@ -35,7 +35,7 @@ private
   def ensure_end_user
     @end_user = EndUser.find(params[:id])
     if current_end_user.id != @end_user.id
-      redirect_to root_path, notice: "【ユーザーログインしてください】"
+      redirect_to root_path, danger: "【ユーザーログインしてください】"
     end
   end
 end

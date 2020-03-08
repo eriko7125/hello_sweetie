@@ -15,7 +15,9 @@ Rails.application.routes.draw do
   # top page
   root 'homes#top'
   get 'homes/about'
-  
+  get 'homes/size'
+  get 'homes/ship_pay'
+
   # ec page
   resources :items, only: [:index, :show] do
     resources :likes, only: [:create, :destroy]

@@ -6,4 +6,10 @@ class HomesController < ApplicationController
 
   def about
   end
+
+  def size
+  end
+
+  def ship_pay
+  end
 end

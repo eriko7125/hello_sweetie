@@ -13,7 +13,7 @@ class Admin::RibbonsController < ApplicationController
   def create
     @ribbon = Ribbon.new(ribbon_params)
     if @ribbon.save
-      redirect_to admin_ribbons_path(@ribbons), notice: "【リボンを追加しました】"
+      redirect_to admin_ribbons_path(@ribbons), success: "【リボンを追加しました】"
     else
       @ribbons = Ribbon.all
       render action: :index
@@ -23,7 +23,7 @@ class Admin::RibbonsController < ApplicationController
   def update
     @ribbon = Ribbon.find(params[:id])
     if @ribbon.update(ribbon_params)
-      redirect_to admin_ribbons_path, notice: "【リボンを変更しました】"
+      redirect_to admin_ribbons_path, info: "【リボンを変更しました】"
     else
       render action: :edit
     end

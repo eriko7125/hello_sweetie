@@ -12,7 +12,7 @@ class AddressesController < ApplicationController
     @address = Address.new(address_params)
     @address.end_user_id = current_end_user.id
     if @address.save
-      redirect_to addresses_path, notice: "【配送先が登録されました】"
+      redirect_to addresses_path, success: "【配送先が登録されました】"
     else
       @addresses = current_end_user.addresses
       render :index
@@ -22,7 +22,7 @@ class AddressesController < ApplicationController
   def update
     @address = Address.find(params[:id])
     if @address.update(address_params)
-      redirect_to addresses_path, notice: "【配送先が編集されました】"
+      redirect_to addresses_path, info: "【配送先が編集されました】"
     else
       render action: :edit
     end
@@ -30,7 +30,7 @@ class AddressesController < ApplicationController
   def destroy
     @address = Address.find(params[:id])
     @address.destroy
-    redirect_to addresses_path, notice: "【配送先が削除されました】"
+    redirect_to addresses_path, warning: "【配送先が削除されました】"
   end
   private
   

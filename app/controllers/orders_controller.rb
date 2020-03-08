@@ -6,9 +6,13 @@ class OrdersController < ApplicationController
   def create_address
     address = Address.new(address_params)
     address.end_user_id = current_end_user.id
-    address.save
-    redirect_to orders_input_address_path
+    if address.save
+      redirect_to orders_input_address_path, success: "【配送先を登録しました】"
+  else
+    @address = Address.new
+    render :input_address
   end
+end
 
   def create_session
     # session
@@ -23,10 +27,10 @@ class OrdersController < ApplicationController
       session[:name] = sub_address.name
     end
 
-    if session[:address].present?
+    if params[:select].present?
       redirect_to orders_display_path
     else
-      render input_address
+      redirect_to orders_input_address_path, danger: "【配送先を選択してください】"
     end
   end
 
@@ -63,7 +67,7 @@ class OrdersController < ApplicationController
     session.delete(:zipcode)
     session.delete(:address)
     session.delete(:name)
-    redirect_to orders_thanks_path, notice: "【購入が完了しました】"
+    redirect_to orders_thanks_path, success: "【購入が完了しました】"
   end
 
   def display

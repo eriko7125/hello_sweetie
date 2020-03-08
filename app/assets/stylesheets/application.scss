@@ -33,6 +33,7 @@ body {
   // background-position: center;
 }
 
+
 a:link {color:#da536e; text-decoration:none }
 a:visited { color:#cc4e67; text-decoration:none }
 a:hover { color:#993a4d; text-decoration:none }
@@ -46,26 +47,6 @@ a:active { color:white; text-decoration:none }
 .navbar-text {
   color: #33131a;
   font-size: large;
-}
-
-
-.icon-class {
-  font-size: 50px;
-}
-
-.item_rank1 {
-  font-size: large;
-  color: orange;
-}
-
-.item_rank2 {
-  font-size: large;
-  color: lightslategray;
-}
-
-.item_rank3 {
-  font-size: large;
-  color: sienna;
 }
 
 header {
@@ -82,6 +63,51 @@ footer {
   margin-top: 20px;
   font-size: small;
   background: linear-gradient(#ff6181, white);
+}
+
+.insta_btn2{/*ボタンの下地*/
+  color: #FFF;/*文字・アイコン色*/
+  border-radius: 7px;/*角丸に*/
+  position: relative;
+  display: inline-block;
+  height: 50px;/*高さ*/
+  width: 220px;/*幅*/
+  text-align: center;/*中身を中央寄せ*/
+  font-size: 25px;/*文字のサイズ*/
+  line-height: 50px;/*高さと合わせる*/
+  background: -webkit-linear-gradient(135deg, #427eff 0%, #f13f79 70%) no-repeat;
+  background: linear-gradient(135deg, #427eff 0%, #f13f79 70%) no-repeat;/*グラデーション①*/
+  overflow: hidden;/*はみ出た部分を隠す*/
+  text-decoration:none;/*下線は消す*/
+}
+
+.insta_btn2:before{/*グラデーション②*/
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;/*全体を覆う*/
+  height: 100%;/*全体を覆う*/
+  background: -webkit-linear-gradient(15deg, #ffdb2c, rgb(249, 118, 76) 25%, rgba(255, 77, 64, 0) 50%) no-repeat;
+  background: linear-gradient(15deg, #ffdb2c, rgb(249, 118, 76) 25%, rgba(255, 77, 64, 0) 50%) no-repeat;
+}
+
+.insta_btn2 .fa-instagram{/*アイコン*/
+  font-size: 35px;/*アイコンサイズ*/
+  position: relative;
+  top: 4px;/*アイコン位置の微調整*/
+}
+
+.insta_btn2 span {/*テキスト*/
+  display:inline-block;
+  position: relative;
+  transition: .5s
+}
+
+.insta_btn2:hover span{/*ホバーで一周回転*/
+  -webkit-transform: rotateX(360deg);
+  -ms-transform: rotateX(360deg);
+  transform: rotateX(360deg);
 }
 
 h1 {
@@ -143,6 +169,38 @@ li {
 .sk-image {
   height: 500px;
   width: 100%;
+}
+
+// TOP Ranking
+.item_rank1 {
+  font-size: large;
+  color: orange;
+}
+
+.item_rank2 {
+  font-size: large;
+  color: lightslategray;
+}
+
+.item_rank3 {
+  font-size: large;
+  color: sienna;
+}
+
+// about step
+.order-step {
+  font-size: large;
+  font-weight: bold;
+  background-color: #e8baca;
+  border-radius: 20px;
+  padding-left: 20px;
+  margin-bottom: 20px;
+}
+
+// size table
+.table-display {
+  text-align: center;
+  vertical-align: middle;
 }
 
 // 商品詳細の生地・リボン一覧画像
