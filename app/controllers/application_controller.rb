@@ -17,4 +17,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  # Bootstrap用フラッシュメッセージ
+  add_flash_types :success, :info, :warning, :danger
 end

@@ -1,7 +1,7 @@
 <% if end_user_signed_in? %>
   <% if item.like_user(current_end_user.id) %>
     <%= link_to item_like_path(item ,item_id: item.id), method: :delete, id: "", remote: true do %>
-      <span class="fas fa-heart"> <%= item.likes_count %></span>
+      <span class="fas fa-heart", style="color: red;"> <%= item.likes_count %></span>
     <% end %>
   <% else %>
     <%= link_to item_likes_path(item), method: :post, id:"", remote: true do %>

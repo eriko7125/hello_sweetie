@@ -15,7 +15,7 @@ class Admin::OrdersController < ApplicationController
   def update
     order = Order.find(params[:id])
     if order.update(order_params)
-      redirect_to admin_order_path(order), notice: "注文ステータスを更新しました"
+      redirect_to admin_order_path(order), info: "注文ステータスを更新しました"
     else
       render :show
     end
@@ -24,7 +24,7 @@ class Admin::OrdersController < ApplicationController
   def production_update
     order_detail = OrderDetail.find(params[:id])
     if order_detail.update(order_detail_params)
-      redirect_to admin_order_path(order_detail.order_id), notice: "製作ステータスを更新しました"
+      redirect_to admin_order_path(order_detail.order_id), info: "製作ステータスを更新しました"
     else
       render :show
     end

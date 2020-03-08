@@ -13,7 +13,7 @@ class Admin::MaterialsController < ApplicationController
   def create
     @material = Material.new(material_params)
     if @material.save
-      redirect_to admin_materials_path(@materials), notice: "【生地を追加しました】"
+      redirect_to admin_materials_path(@materials), success: "【生地を追加しました】"
     else
       @materials = Material.all
       render action: :index
@@ -23,7 +23,7 @@ class Admin::MaterialsController < ApplicationController
   def update
     @material = Material.find(params[:id])
     if @material.update(material_params)
-      redirect_to admin_materials_path, notice: "【生地を変更しました】"
+      redirect_to admin_materials_path, info: "【生地を変更しました】"
     else
       render action: :edit
     end
