@@ -34,6 +34,7 @@ Rails.application.routes.draw do
   
   # end_user mypage
   resources :end_users, only: [:show, :edit, :update, :destroy] do
+    resources :likes, only: [:index]
     collection do
       get :confirm
     end

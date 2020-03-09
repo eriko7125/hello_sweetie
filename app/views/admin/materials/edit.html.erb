@@ -22,7 +22,7 @@
         </tr>
         <tr>
           <th><label for="material_image">生地画像</label></th>
-          <td><%= attachment_image_tag @material, :image, :fill, 150, 100, format: 'jpeg' %>
+          <td><%= attachment_image_tag @material, :image, :fill, 150, 100, format: 'jpeg', alt: "生地画像" %>
           <%= f.attachment_field :image, placeholder: "material Image" %></td>
         </tr>
       </table>

@@ -38,8 +38,9 @@
       </tr>
     </table>
   </div>
-  <div class="col-3 offset-1">
+  <div class="col-4 offset-1">
     <h4><strong>配送先　　　</strong><%= link_to '一覧を見る', addresses_path, class:"btn btn-primary" %> </h4>
     <h4><strong>注文履歴　　</strong><%= link_to '一覧を見る', orders_path, class:"btn btn-primary" %> </h4>
+    <h4><strong>お気に入り　</strong><%= link_to '一覧を見る', end_user_likes_path(current_end_user), class:"btn btn-primary" %> </h4>
   </div>
 </div>

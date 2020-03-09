@@ -24,10 +24,10 @@
       </thead>
       <% @cart_items.each do |cart_item| %>
         <tr>
-          <td><%= attachment_image_tag cart_item.item,:image, :fill, 50, 50 %><%= cart_item.item.name %></td>
-          <td class="small"><%= attachment_image_tag cart_item.material,:image, :fill, 40, 30 %>
+          <td><%= attachment_image_tag cart_item.item,:image, :fill, 50, 50, alt: "アイテム画像" %><%= cart_item.item.name %></td>
+          <td class="small"><%= attachment_image_tag cart_item.material,:image, :fill, 40, 30, alt: "生地画像" %>
           <br><%= cart_item.material.name %></td>
-          <td class="small"><%= attachment_image_tag cart_item.ribbon, :image, :fill, 40, 30 %>
+          <td class="small"><%= attachment_image_tag cart_item.ribbon, :image, :fill, 40, 30, alt: "リボン画像" %>
           <br><%= cart_item.ribbon.color %></td>
           <td class="align-middle"><%= converting_to_jpy(cart_item.item.price) %></td>
           <td class="align-middle">

@@ -6,29 +6,29 @@
 
 <div class="row">
   <div class="col-7">
-      <table class="table table-bordered">
-        <tbody>
-          <tr>
-            <th width="150">購入者</th>
-            <td><%= @order.end_user.last_name %> <%= @order.end_user.first_name %> 様</td>
-          </tr>
-          <tr>
-            <th>配送先</th>
-            <td>〒 <%= @order.zipcode %>　<%= @order.address %></td>
-          </tr>
-          <tr>
-            <th>宛名</th>
-            <td><%= @order.name %> 様</td>
-          </tr>
-          <tr>
-            <th class="align-middle">注文ステータス</th>
-            <td><%= form_for(@order, url:admin_order_path(@order), method: :patch) do |f| %>
-              <%= f.select :status, [["入金待ち"], ["入金確認"],["製作中"],["発送準備中"],["発送済み"]] %>
-              <%= f.submit "更新", class: "btn btn-primary" %>
-            <% end %></td>
-          </tr>
-        </tbody>
-      </table>
+    <table class="table table-bordered">
+      <tbody>
+        <tr>
+          <th width="150">購入者</th>
+          <td><%= @end_user.last_name %> <%= @end_user.first_name %> 様</td>
+        </tr>
+        <tr>
+          <th>配送先</th>
+          <td>〒 <%= @order.zipcode %>　<%= @order.address %></td>
+        </tr>
+        <tr>
+          <th>宛名</th>
+          <td><%= @order.name %> 様</td>
+        </tr>
+        <tr>
+          <th class="align-middle">注文ステータス</th>
+          <td><%= form_for(@order, url:admin_order_path(@order), method: :patch) do |f| %>
+            <%= f.select :status, [["入金待ち"], ["入金確認"],["製作中"],["発送準備中"],["発送済み"]] %>
+            <%= f.submit "更新", class: "btn btn-primary" %>
+          <% end %></td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 
   <div class="col-3 offset-2">
@@ -66,8 +66,8 @@
         <% @order_details.each do |order_detail| %>
           <tr>
             <td class="align-middle"><%= order_detail.item_name %></td>
-            <td class="align-middle"><%= order_detail.material_name %></td>
-            <td class="align-middle"><%= order_detail.ribbon_color %></td>
+            <td class="align-middle"><small><%= order_detail.material_name %></small></td>
+            <td class="align-middle"><small><%= order_detail.ribbon_color %></small></td>
             <td class="align-middle"><%= order_detail.size %></td>
             <td class="align-middle"><%= converting_to_jpy(order_detail.price) %></td>
             <td><%= form_for(order_detail, url:admin_order_production_path(order_detail, order_id: @order.id), method: :patch) do |f| %>
