@@ -2,22 +2,23 @@ class Admin::OrdersController < ApplicationController
   before_action :authenticate_admin_user!
 
   def index
-    @orders = Order.all
+    @orders = Order.all.order(created_at: :desc).page(params[:page]).per(10)
     @today_orders = Order.where(created_at: (Time.zone.today.beginning_of_day)..(Time.zone.today.end_of_day))
     @order_details = OrderDetail.all
   end
 
   def show
     @order = Order.find(params[:id])
+    @end_user = EndUser.find(@order.end_user_id)
     @order_details = @order.order_details
   end
-
+  
   def update
-    order = Order.find(params[:id])
-    if order.update(order_params)
-      redirect_to admin_order_path(order), info: "注文ステータスを更新しました"
+    @order = Order.find(params[:id])
+    if @order.update(order_params)
+      redirect_to admin_order_path(@order), info: "注文ステータスを更新しました"
     else
-      render :show
+      redirect_to admin_order_path(@order),  danger: "注文ステータスを更新できませんでした"
     end
   end
 

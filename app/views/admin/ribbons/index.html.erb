@@ -41,7 +41,7 @@
       <% @ribbons.each do |ribbon| %>
         <tr>
         <td class="align-middle"><%= ribbon.color %></td>
-        <td><%= attachment_image_tag ribbon, :image, :fill, 60, 40, format: 'jpeg' %></td>
+        <td><%= attachment_image_tag ribbon, :image, :fill, 60, 40, format: 'jpeg', alt: "リボン画像" %></td>
         <td class="align-middle"><%= ribbon.status %></td>
         <td width="120"><%= link_to "編集する", edit_admin_ribbon_path(ribbon.id), class: "btn btn-primary" %></td>
         </tr>

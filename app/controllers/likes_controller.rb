@@ -9,4 +9,8 @@ class LikesController < ApplicationController
     like.destroy
     @item = Item.find(params[:item_id])
   end
+
+  def index
+    @likes = Like.where(end_user_id: current_end_user.id).page(params[:page]).per(12)
+  end
 end

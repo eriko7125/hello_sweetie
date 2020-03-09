@@ -26,13 +26,7 @@
 body {
   font-family: 'M PLUS Rounded 1c', sans-serif;
   color: #33131a;
-  // min-height: 100vh;
-  // background-image: url(bg_img.jpg);
-  // background-attachment: fixed;
-  // background-size: cover;
-  // background-position: center;
 }
-
 
 a:link {color:#da536e; text-decoration:none }
 a:visited { color:#cc4e67; text-decoration:none }
@@ -47,6 +41,7 @@ a:active { color:white; text-decoration:none }
 .navbar-text {
   color: #33131a;
   font-size: large;
+  padding: 0;
 }
 
 header {
@@ -54,6 +49,25 @@ header {
   height: 200px;
   padding-top: 10px;
   background: linear-gradient(#ff6181, white);
+}
+
+.user-set li {
+  border-bottom: double 3px #662733;
+  padding-left: 20px;
+}
+
+.admin-set li {
+  border-bottom: double 3px #662733;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.menu {
+  color: #cc4e67;
+  font-size: large;
+  font-weight: bold;
+  margin-top: 10px;
+  margin-bottom: 20px;
 }
 
 footer {
@@ -65,6 +79,7 @@ footer {
   background: linear-gradient(#ff6181, white);
 }
 
+// footer インスタリンクのデザイン
 .insta_btn2{/*ボタンの下地*/
   color: #FFF;/*文字・アイコン色*/
   border-radius: 7px;/*角丸に*/
@@ -109,12 +124,24 @@ footer {
   -ms-transform: rotateX(360deg);
   transform: rotateX(360deg);
 }
+// 
 
 h1 {
   font-size: x-large;
   border-bottom: double 3px #662733;
   margin-bottom: 30px;
   margin-top: 30px;
+  padding-left: 40px;
+  background-image: url(paw-solid.png);
+	background-repeat: no-repeat;
+	background-size: 25px;
+  background-position: left 7px center;
+}
+
+// TOP 新着・お気に入りタイトルは h1 のアイコンを適用させない
+.clear-h1 {
+  padding-left: initial;
+  background-image: initial;
 }
 
 h2 {
@@ -198,9 +225,37 @@ li {
 }
 
 // size table
-.table-display {
+.table-display th {
   text-align: center;
   vertical-align: middle;
+}
+
+.table-display td {
+  text-align: center;
+  vertical-align: middle;
+}
+// 
+
+select {
+  -webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+	padding: 7px 30px 7px 10px;
+	line-height: 1.1em;
+  background-image: url(angle-down-solid.svg);
+	background-repeat: no-repeat;
+	background-size: 20px 20px;
+	background-position: right 7px center;
+  background-color: #eee;
+}
+
+input {
+  box-shadow: 0 0 black;
+  background-color: #efefef;
+}
+
+textarea {
+  box-shadow: 0 0 black;
 }
 
 // 商品詳細の生地・リボン一覧画像
@@ -212,6 +267,14 @@ li {
   border-style: groove;
 }
 
+// ジャンル別の表示
+.item-genre li {
+  padding: 5px 10px 5px 10px;
+  border: 4px double;
+  border-radius: 20px;
+}
+
+// pagenate
 // ページネーション自体のデザイン
 .pagination>li>a {
   color:#da536e;
@@ -230,11 +293,4 @@ li {
   color: #fff;
   background-color: #d98293;
   border-color: #d98293;
-}
-
-// ジャンル別の表示
-.item-genre li {
-  padding: 5px 10px 5px 10px;
-  border: 4px double;
-  border-radius: 20px;
 }

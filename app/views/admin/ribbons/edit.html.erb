@@ -20,7 +20,7 @@
       </tr>
       <tr>
         <th><label for="ribbon_image">リボン画像</label></th>
-        <td><%= attachment_image_tag @ribbon, :image, :fill, 150, 100, format: 'jpeg' %>
+        <td><%= attachment_image_tag @ribbon, :image, :fill, 150, 100, format: 'jpeg', alt: "リボン画像" %>
         <%= f.attachment_field :image, placeholder: "ribbon Image" %></td>
       </tr>
     </table>

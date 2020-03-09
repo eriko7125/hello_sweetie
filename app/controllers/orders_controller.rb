@@ -4,10 +4,10 @@ class OrdersController < ApplicationController
   end
 
   def create_address
-    address = Address.new(address_params)
-    address.end_user_id = current_end_user.id
-    if address.save
-      redirect_to orders_input_address_path, success: "【配送先を登録しました】"
+  address = Address.new(address_params)
+  address.end_user_id = current_end_user.id
+  if address.save
+    redirect_to orders_input_address_path, success: "【配送先を登録しました】"
   else
     @address = Address.new
     render :input_address
@@ -20,7 +20,7 @@ end
       session[:zipcode] = current_end_user.zipcode
       session[:address] = current_end_user.address
       session[:name] = "#{current_end_user.last_name} #{current_end_user.first_name}"
-    else params[:select] == "sub_address"
+    elsif params[:select] == "sub_address"
       sub_address = Address.find(params[:sub_address_id])
       session[:zipcode] = sub_address.zipcode
       session[:address] = sub_address.address
@@ -49,20 +49,20 @@ end
     order.sum_price = cart_items_sum_price
     order.shipping_price = 830
     order.payment_price = order.sum_price + order.shipping_price
-    order.save
+    order.save!
     
     current_cart_items.each do |cart_item|
-      order_detail = OrderDetail.new
-      order_detail.order_id = order.id
-      order_detail.item_name = cart_item.item.name
-      order_detail.material_name = cart_item.material.name
-      order_detail.ribbon_color = cart_item.ribbon.color
-      order_detail.size = cart_item.size
-      order_detail.price = cart_item.item.price
-      order_detail.production_status = 0
-      order_detail.save
+      @order_detail = OrderDetail.new
+      @order_detail.order_id = order.id
+      @order_detail.item_name = cart_item.item.name
+      @order_detail.material_name = cart_item.material.name
+      @order_detail.ribbon_color = cart_item.ribbon.color
+      @order_detail.size = cart_item.size
+      @order_detail.price = cart_item.item.price
+      @order_detail.production_status = 0
+      @order_detail.save
     end
-
+    
     current_cart_items.destroy_all
     session.delete(:zipcode)
     session.delete(:address)
@@ -89,6 +89,7 @@ end
 
   def show
     @order = Order.find(params[:id])
+    
   end
 
   private

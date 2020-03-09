@@ -20,7 +20,7 @@
       </thead>
       <% @items.each do |item| %>
         <tr>
-          <td><%= attachment_image_tag item, :image, :fill, 60, 40, format: 'jpeg' %></td>
+          <td><%= attachment_image_tag item, :image, :fill, 60, 40, format: 'jpeg', alt: "アイテム画像" %></td>
           <td class="align-middle"><%= item.name %></td>
           <td class="align-middle"><%= item.genre.name %></td>
           <td class="align-middle"><%= converting_to_jpy(item.price) %></td>

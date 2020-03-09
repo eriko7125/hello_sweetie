@@ -8,7 +8,7 @@ class Address < ApplicationRecord
   validates :address, :name, presence: true
 
   def input_view_address
-    zipcode.to_s.insert(3, '-').split('-')
+    zipcode.to_s.insert(3, '-')
     "〒" + self.zipcode + " " +self.address + " " + self.name.to_s
   end
 end

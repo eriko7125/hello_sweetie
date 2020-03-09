@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-5 offset-1">
     <div class="field">
-      <%= attachment_image_tag @item, :image, :fill, 400, 400, format: "jpeg" %>
+      <%= attachment_image_tag @item, :image, width: "100%", format: "jpeg", class: "mt-5", alt: "アイテム画像" %>
     </div>
   </div>
   <div class="col-5">
@@ -20,7 +20,7 @@
     <div class="row">
       <div class="col-5 offset-6">
         <label>◆サイズを選択</label>
-        <h2><%= f.select :size,  [["SS"], ["S"], ["M"], ["L"], ["LL"],["DM"]] %>　<%= link_to "　サイズ選びにつきまして",  homes_about_path, class:"small" %></h2>
+        <h2><%= f.select :size,  [["SS"], ["S"], ["M"], ["L"], ["LL"],["DM"]] %>　<%= link_to "　サイズ選びにつきまして",  homes_size_path, class:"small" %></h2>
       </div>
     </div>
     <div class="row">
@@ -30,7 +30,7 @@
       <div class="col-3 design-select">
         <div style="width:250px; height:200px; overflow:scroll;">
           <% @active_materials.each do |material|%>
-            <%= attachment_image_tag material, :image, :fill, 150, 120, format: "jpeg" %>
+            <%= attachment_image_tag material, :image, :fill, 150, 120, format: "jpeg", alt: "生地画像" %>
             <p class="small"><%= material.name %></p>
           <% end %>
         </div>
@@ -47,7 +47,7 @@
       <div class="col-3 design-select">
         <div style="width:250px; height:200px; overflow:scroll;">
           <% @active_ribbons.each do |ribbon|%>
-            <%= attachment_image_tag ribbon, :image, :fill, 150, 120, format: "jpeg" %>
+            <%= attachment_image_tag ribbon, :image, :fill, 150, 120, format: "jpeg", alt: "リボン画像" %>
             <p class="small"><%= ribbon.color %></p>
           <% end %>
         </div>
