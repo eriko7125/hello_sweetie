@@ -64,6 +64,8 @@ ActiveRecord::Schema.define(version: 2020_03_06_173433) do
     t.index ["reset_password_token"], name: "index_end_users_on_reset_password_token", unique: true
   end
 
+<<<<<<< HEAD
+=======
   create_table "genres", force: :cascade do |t|
     t.string "name", null: false
     t.integer "status", default: 1, null: false
@@ -132,4 +134,5 @@ ActiveRecord::Schema.define(version: 2020_03_06_173433) do
     t.datetime "updated_at", null: false
   end
 
+>>>>>>> origin/develop
 end
