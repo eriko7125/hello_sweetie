@@ -7,9 +7,93 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/5d73e1e367.js" crossorigin="anonymous"></script>
   </head>
+  
+  <header>
+    <div class="container">
+      <% if controller.controller_path == 'admin_users/sessions' && controller.action_name == 'new' %>
+        <nav class="nav justify-content-center">
+          <%= image_tag "logo2.png", alt: "ロゴ" %>
+        </nav>
+      <% else %>
+        <% if admin_user_signed_in? %>
+        <%# admin header %>
+          <nav class="nav justify-content-center">
+            <%= image_tag "logo2.png", alt: "ロゴ" %>
+          </nav>
+          <ul class="nav navbar admin-set">
+            <li><%= link_to " 注文履歴一覧", admin_orders_path, class: "fas fa-clipboard-list" %></li>
+            <li><%= link_to " アイテム管理", admin_items_path, class: "fas fa-tshirt" %></li>
+            <li><%= link_to " ジャンル管理", admin_genres_path, class: "fas fa-tags" %></li>
+            <li><%= link_to " 生地管理", admin_materials_path, class: "fas fa-cut" %></li>
+            <li><%= link_to " リボン管理", admin_ribbons_path, class: "fas fa-ribbon" %></li>
+            <li><%= link_to " 会員一覧", admin_end_users_path, class: "fas fa-users" %></li>
+            <li><%= link_to " 管理者ログアウト", destroy_admin_user_session_path, method: :delete, class: "fas fa-sign-out-alt" %></li>
+          </ul>
+        <% elsif end_user_signed_in? %>
+        <%# ec signin header %>
+          <nav class="navbar-text"><i class="fas fa-dog"></i> Hello, <%= link_to current_end_user.first_name, end_user_path(current_end_user) %> ! </nav>
+          <nav class="nav justify-content-center">
+            <%= image_tag "logo2.png", alt: "ロゴ" %>
+          </nav>
+          <ul class="nav justify-content-end user-set">
+            <li><%= link_to "カート", cart_items_path, class: "fas fa-shopping-cart" %></li>
+            <li><%= link_to "マイページ", end_user_path(current_end_user), class: "fas fa-user-cog" %></li>
+            <li><%= link_to "ログアウト　", destroy_end_user_session_path, method: :delete, class: "fas fa-sign-out-alt" %></li>
+          </ul>
+        <% else %>
+        <%# ec signout header %>
+          <nav class="navbar-text"><i class="fas fa-user"></i> Hello, Guest！</nav>
+          <nav class="nav justify-content-center">
+            <%= image_tag "logo2.png", alt: "ロゴ" %>
+          </nav>
+          <ul class="nav justify-content-end user-set">
+            <li><%= link_to " ログイン", new_end_user_session_path, class: "fas fa-sign-in-alt" %></li>
+            <li><%= link_to " ユーザー登録　", new_end_user_registration_path, class: "fas fa-user-plus" %></li>
+          </ul>
+        <% end %>
+      <% end %>
 
-  <body>
-    <%= yield %>
-  </body>
+    <%# menu %>
+    <ul class="nav navbar menu">
+      <li><i class="fas fa-home"></i><%= link_to " HOME", root_path %></li>
+      <li><i class="far fa-smile"></i><%= link_to " 初めての方へ", homes_about_path %></li>
+      <li><i class="fas fa-tshirt"></i><%= link_to " アイテム一覧へ", items_path %></li>
+      <li><i class="fas fa-ruler"></i><%= link_to " サイズについて", homes_size_path %></li>
+      <li><i class="fas fa-shipping-fast"></i><%= link_to " お支払い・配送について", homes_ship_pay_path %></li>
+    </ul>
+
+  </header>
+  
+  <div class="container">
+    <body>
+      <% flash.each do |name, msg| %>
+        <div class="alert alert-<%= name %>">
+          <%= msg.html_safe %>
+        </div>
+      <% end %>
+      <%= yield %>
+    </body>
+  </div>
+
+  <footer>
+    <ul class="d-flex">
+        <li class="col-2 offset-1"><h6>◆営業日について</h6>
+        土日・祝日を除く
+        <br>平日9:00〜18:00</li>
+        <li class="col-5"><h6>◆ Instagram で製作したお洋服や着用画像を投稿しております！</h6>
+        <a href="https://www.instagram.com/liebling_suzu/?hl=ja" class="insta_btn2" style="color:white;">
+          <i class="fab fa-instagram mr-2"></i><span>Liebling Suzu</span>
+        </a></li>
+        <li class="col-2 offset-1"><h6>◆サイト管理者<%= link_to "", new_admin_user_session_path, class: "fas fa-wrench" %></h6>
+        〇〇　〇〇
+        <br>〒×××-××××
+        <br>〇〇県〇〇市〇〇 ×-××-××
+        <br><small>お問い合わせ xx@xx.com</small>
+        </li>
+    </ul>
+    <p class="text-center">© Hello,Sweetie!</p>
+  </footer>
+
 </html>

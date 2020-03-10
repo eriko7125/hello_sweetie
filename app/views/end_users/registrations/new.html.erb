@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="col-8 offset-2">
+    <h1>ユーザー登録</h1>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+      <table class="table">
+      <tr>
+        <th width="200"><%= f.label :氏名 %></th>
+        <td><%= f.text_field :last_name, autofocus: true, autocomplete: "last_name", placeholder:"名字" %>
+        <%= f.text_field :first_name, autofocus: true, autocomplete: "first_name", placeholder:"名前" %></td>
+      </tr>
+      <tr>
+        <th><%= f.label :ﾌﾘｶﾞﾅ %></th>
+        <td><%= f.text_field :last_name_kana, autofocus: true, autocomplete: "last_name_kana", placeholder:"名字半角ｶﾅ" %>
+        <%= f.text_field :first_name_kana, autofocus: true, autocomplete: "first_name_kana", placeholder:"名前半角ｶﾅ" %></td>
+      </tr>
+      <tr>
+        <th><%= f.label :郵便番号 %></th>
+        <td><%= f.text_field :zipcode, autofocus: true, autocomplete: "zipcode", placeholder:"半角英数字 ハイフンなし" %></td>
+      </tr>
+      <tr>
+        <th><%= f.label :住所 %></th>
+        <td><%= f.text_field :address, autofocus: true, autocomplete: "address", :size=>"42" %></td>
+      </tr>
+      <tr>
+        <th><%= f.label :電話番号 %></th>
+        <td><%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number", placeholder:"半角英数字 ハイフンなし", :size=>"42" %></td>
+      </tr>
+      <tr>
+        <th><%= f.label :メールアドレス %></th>
+        <td><%= f.email_field :email, autofocus: true, autocomplete: "email" %></td>
+      </tr>
+      <tr>
+        <th><%= f.label :パスワード %></th>
+        <td><%= f.password_field :password, autocomplete: "new-password", placeholder:"半角英数字 6文字以上" %></td>
+      </tr>
+      <tr>
+        <th><%= f.label :パスワード再入力 %></th>
+        <td><%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder:"上記と同じパスワード" %></td>
+      </tr>
+      </table>
+
+      <p><%= f.submit "上記内容で会員登録する", class: "btn btn-primary mx-auto d-block" %></p>
+    <% end %>
+
+    <p>登録がお済みの方は→<%= render "end_users/shared/links" %></p>
+  </div>
+</div>

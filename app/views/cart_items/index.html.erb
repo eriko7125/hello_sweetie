@@ -1,0 +1,66 @@
+<div class="row">
+  <div class="col-12">
+    <h1>ショッピングカート</h1>
+    <div class="col-2 offset-10">
+      <% if @cart_items != [] %> <%# カートが空のときは非表示 %>
+        <%= link_to 'カートを空にする', cart_item_destroy_all_path, method: :delete, data: {confirm: 'カートを空にしてよろしいですか？'}, class: "btn-sm btn-primary" %>
+      <% end%>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <table class="table table-bordered">
+      <thead class="thead-light">
+        <tr>
+          <th>商品名</th>
+          <th>生地</th>
+          <th>リボン</th>
+          <th>税込価格</th>
+          <th>サイズ</th>
+          <th></th>
+        </tr>
+      </thead>
+      <% @cart_items.each do |cart_item| %>
+        <tr>
+          <td><%= attachment_image_tag cart_item.item,:image, :fill, 50, 50, alt: "アイテム画像" %><%= cart_item.item.name %></td>
+          <td class="small"><%= attachment_image_tag cart_item.material,:image, :fill, 40, 30, alt: "生地画像" %>
+          <br><%= cart_item.material.name %></td>
+          <td class="small"><%= attachment_image_tag cart_item.ribbon, :image, :fill, 40, 30, alt: "リボン画像" %>
+          <br><%= cart_item.ribbon.color %></td>
+          <td class="align-middle"><%= converting_to_jpy(cart_item.item.price) %></td>
+          <td class="align-middle">
+            <%= form_for cart_item do |f|%> 
+              <%= f.select :size, [["SS","SS"], ["S","S"], ["M","M"], ["L","L"], ["DM","DM"]] %>
+              <%= f.submit "変更", class: "btn btn-primary"%>
+            <% end %>
+          </td>
+          <td class="align-middle"><%= link_to '削除する', cart_item_path(cart_item), method: :delete, data: {confirm: '商品を削除してよろしいですか？'}, class: "btn-sm btn-primary" %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <%= link_to '買い物を続ける', items_path, class: "btn btn-primary" %>
+    <div class="offset-9">
+      <table class="table table-bordered">
+        <tr>
+          <th>合計金額</th>
+          <td><%= converting_to_jpy(@cart_items_sum_price) %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-4 offset-5">
+    <% if @cart_items != [] %> <%# カートが空のときは非表示 %>
+      <%= link_to '配送先の選択へ進む', orders_input_address_path, class: "btn btn-primary" %>
+    <% end%>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+<div class="row">
+  <div class="col-8 offset-2">
+    <h1>配送先選択</h1>
+  </div>
+</div>
+<%= form_with url:orders_create_session_path do |f| %>
+  <div class="row">
+    <div class="col-8 offset-2">
+      <p>
+        <%= f.radio_button :select, :main_address %>
+        <%= label_tag "ご自身の住所" %><br>
+        <%="〒" %><%= current_end_user.zipcode.insert(3,"-") %> <%= current_end_user.address %><br>
+        <%= current_end_user.last_name %> <%= current_end_user.first_name %>
+      </p>
+      <p>
+        <%= f.radio_button :select, :sub_address %>
+        <%= label_tag  "ご登録済みの配送先から選択" %><br>
+        <%= f.collection_select(:sub_address_id, current_end_user.addresses, :id, :input_view_address ) %>
+      </p>
+      </p>
+      <div class="row">
+        <div class="col-4 offset-4">
+          <%= f.submit "注文情報の確認画面へ進む", class: "btn btn-primary" %>
+        </div>
+        </div>
+    </div>
+  </div>
+<% end%>
+
+<div class="row">
+  <div class="col-8 offset-2">
+    <h1>配送先追加</h1>
+  </div>
+</div>
+<%= form_for(@address, url:orders_create_address_path) do |f| %>
+  <div class="row">
+    <div class="col-8 offset-2">
+    <%= render 'layouts/error_messages', model: f.object %>
+      <table class="table table-bordered">
+        <tr>
+          <th>郵便番号</th>
+          <td><%= f.text_field :zipcode, placeholder:"半角英数字 ハイフン不要"  %></td>
+        </tr>
+        <tr>
+          <th>住所</th>
+          <td><%= f.text_field :address, size: "60" %></td>
+        </tr>
+        <tr>
+          <th>宛名</th>
+          <td><%= f.text_field :name %></td>
+        </tr>
+      </table>
+      <%= f.submit '登録する', class: "btn btn-primary mx-auto d-block" %>
+    </div>
+  </div>
+<% end %>

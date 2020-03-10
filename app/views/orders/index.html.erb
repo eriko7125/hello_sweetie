@@ -1,0 +1,43 @@
+<div class="row">
+  <div class="col-12">
+    <h1>注文履歴一覧</h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <table class="table table-bordered">
+      <thead class="thead-light">
+        <tr>
+          <th>注文日時</th>
+          <th>配送先</th>
+          <th>注文商品</th>
+          <th>支払金額</th>
+          <th>ステータス</th>
+          <th>注文詳細</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @orders.each do |order| %>
+          <tr>
+            <td class="align-middle"><%= order.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+            <td class="align-middle">〒<%= order.zipcode %><%# sessionで"-"入力済 %>
+              <br><%= order.address %>
+              <br><%= order.name %> 様
+            </td>
+            <td class="align-middle">
+              <% order.order_details.each do |order_detail| %>
+                <%= order_detail.item_name %><br>
+              <% end %>
+            </td>
+            <td class="align-middle"><%= converting_to_jpy_notax(order.payment_price) %></td>
+            <td class="align-middle"><%= order.status %></td>
+            <td class="align-middle"><%= link_to "表示する", order_path(order), class:"btn btn-primary" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<p class="text-center"><%= link_to "戻る", end_user_path(current_end_user) %></p>

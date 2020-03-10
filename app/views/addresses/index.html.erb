@@ -1,0 +1,60 @@
+<div class="row">
+  <div class="col-8 offset-2">
+    <h1>配送先追加</h1>
+  </div>
+</div>
+
+<%= form_for @address do |f| %>
+  <div class="row">
+    <div class="col-8 offset-2">
+      <%= render 'layouts/error_messages', model: f.object %>
+      <table class="table table-bordered">
+        <tr>
+          <th>郵便番号</th>
+          <td><%= f.text_field :zipcode, placeholder: "半角英数字　ハイフンなし" %></td>
+        </tr>
+        <tr>
+          <th>住所</th>
+          <td><%= f.text_field :address, size: "60" %></td>
+        </tr>
+        <tr>
+          <th>宛名</th>
+          <td><%= f.text_field :name %></td>
+        </tr>
+      </table>
+      <%= f.submit '登録する',class: "btn btn-primary mx-auto d-block" %>
+    </div>
+  </div>
+<% end %>
+
+<div class="row">
+  <div class="col-8 offset-2">
+    <h1>配送先一覧</h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-8 offset-2">
+    <table class="table table-bordered">
+      <thead class="thead-light">
+        <tr>
+          <th>郵便番号</th>
+          <th>住所</th>
+          <th>宛名</th>
+          <th></th>
+        </tr>
+      </thead>
+      <% @addresses.each do |address| %>
+        <tr>
+          <td class="align-middle">〒<%= address.zipcode.insert(3, "-") %></td>
+          <td class="align-middle"><%= address.address %></td>
+          <td class="align-middle"><%= address.name %></td>
+          <td width="220"><%= link_to "編集する", edit_address_path(address.id), class: "btn btn-primary" %>
+          <%= link_to '削除する', address_path(address), class:"btn-sm btn-primary", method: :delete, "data-confirm" => "本当に削除しますか？" %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
+
+<p class="text-center"><%= link_to "戻る", end_user_path(current_end_user) %></p>

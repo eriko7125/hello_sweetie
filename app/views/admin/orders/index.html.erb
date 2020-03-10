@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-4">
+    <h2>◆本日の注文件数：　<%= @today_orders.count %>　件</h2>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <h1>注文履歴一覧</h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <table class="table table-bordered table-hover">
+      <thead class="thead-light">
+        <tr>
+          <th>購入日時</th>
+          <th>購入者</th>
+          <th>注文商品</th>
+          <th>注文ステータス</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @orders.each do |order| %>
+          <tr>
+            <td><%= link_to order.created_at.strftime("%Y-%m-%d %H:%M"), admin_order_path(order) %></td>
+            <td><%= order.end_user.last_name %> <%= order.end_user.first_name %> 様</td>
+            <td><% order.order_details.each do |item| %>
+              ◆<%= item.item_name %><span class="small">　サイズ：<%= item.size %></span><br>
+              <span class="small">生地：<%= item.material_name %>、リボン：<%= item.ribbon_color %></span><br>
+            <% end %></td>
+            <td><%= order.status %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<div class="row">
+  <p class="mx-auto"><%= paginate @orders %></p>
+</div>

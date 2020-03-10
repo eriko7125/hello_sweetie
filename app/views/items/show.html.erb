@@ -1,0 +1,77 @@
+<div class="row">
+  <div class="col-5 offset-1">
+    <div class="field">
+      <%= attachment_image_tag @item, :image, width: "100%", format: "jpeg", class: "mt-5", alt: "アイテム画像" %>
+    </div>
+  </div>
+  <div class="col-5">
+      <h1><%= @item.name %></h1>
+      <h2><strong><%= simple_format(@item.caption) %></h2>
+      <label>◆販売価格</label>
+      <h2>　<strong><%= converting_to_jpy(@item.price) %></strong></h2>
+      <h2>登録ジャンル：<strong><%= @item.genre.name %></strong></h2>
+      <h2>受注状況：<strong><%= @item.status %></strong></h2>
+  </div>
+</div>
+
+<%# アイテムステータスが「販売中」の場合、カートに追加可能 %>
+<% if @item.status == "販売中" %>
+  <%= form_for @cart_item do |f| %>
+    <div class="row">
+      <div class="col-5 offset-6">
+        <label>◆サイズを選択</label>
+        <h2><%= f.select :size,  [["SS"], ["S"], ["M"], ["L"], ["LL"],["DM"]] %>　<%= link_to "　サイズ選びにつきまして",  homes_size_path, class:"small" %></h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-2 offset-1 text-right">
+        <label>生地一覧</label>
+      </div>
+      <div class="col-3 design-select">
+        <div style="width:250px; height:200px; overflow:scroll;">
+          <% @active_materials.each do |material|%>
+            <%= attachment_image_tag material, :image, :fill, 150, 120, format: "jpeg", alt: "生地画像" %>
+            <p class="small"><%= material.name %></p>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-5">
+        <label>◆生地を選択</label>
+        <h2><strong><%= f.collection_select :material_id, Material.where(status: 1), :id, :name %></strong></h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-2 offset-1 text-right">
+        <label>リボン一覧</label>
+      </div>
+      <div class="col-3 design-select">
+        <div style="width:250px; height:200px; overflow:scroll;">
+          <% @active_ribbons.each do |ribbon|%>
+            <%= attachment_image_tag ribbon, :image, :fill, 150, 120, format: "jpeg", alt: "リボン画像" %>
+            <p class="small"><%= ribbon.color %></p>
+          <% end %>
+        </div>
+      </div>
+      <div class="col-5">
+        <label>◆リボンを選択</label>
+        <h2><strong><%= f.collection_select :ribbon_id, Ribbon.where(status: 1), :id, :color %></strong></h2>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-10 offset-1 text-center">
+        <%= f.hidden_field :item_id, :value => @item.id %>
+        <p><%= f.submit "カートに入れる", class:"btn btn-lg btn-primary" %></p>
+        <p><%= link_to "戻る", :back %></p>
+      </div>
+    </div>
+  <% end %>
+
+<%# アイテムステータスが「販売停止中」の場合、戻るボタンを表示 %>
+<% else @item.status == "販売停止中" %>
+  <p><div class="row">
+    <div class="col-10 offset-1 text-center">
+      <%= link_to "アイテム一覧へ戻る", items_path, class: "btn btn-primary" %>
+    </div>
+  </div></p>
+<% end %>

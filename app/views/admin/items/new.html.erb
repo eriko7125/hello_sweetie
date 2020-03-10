@@ -1,0 +1,48 @@
+<div class="row">
+  <div class="col-10 offset-1">
+    <h1>アイテム追加</h1>
+  </div>
+</div>
+
+<%= form_for(@item, url:admin_items_path) do |f| %>
+  <div class="row">
+    <div class="col-10 offset-1">
+      <%= render 'layouts/error_messages', model: f.object %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-4 offset-1">
+      <div class="field">
+        <label for="item_image">Image</label>
+        <%= f.attachment_field :image, placeholder: "Item Image", alt: "アイテム画像" %>
+      </div>
+    </div>
+    <div class="col-6">
+      <table class="table table-borderless">
+        <tr>
+          <th><%= f.label :name, "商品名" %></th>
+          <td><%= f.text_field :name %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :caption, "商品説明" %></th>
+          <td><%= f.text_area :caption %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :genre_id, "ジャンル" %></th>
+          <td><%= f.collection_select :genre_id, Genre.all, :id, :name %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :price, "販売価格（税込）" %></th>
+          <td><%= f.number_field :price %></td>
+        </tr>
+        <tr>
+          <th><%= f.label :status, "販売ステータス" %></th>
+          <td><%= f.radio_button :status, :販売中, class: "mr-2" %><%= f.label "販売中", class: "mr-2" %>
+          <%= f.radio_button :status, :販売停止中, class: "mr-2" %><%= f.label "販売停止中" %></td>
+      </table>
+    </div>
+  </div>
+  <p><%= f.submit "追加する", class: "btn btn-primary mx-auto d-block" %></p>
+<% end %>
+
+<p class="text-center"><%= link_to "戻る", admin_items_path %></p>

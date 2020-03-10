@@ -39,6 +39,12 @@ gem 'bootsnap', '>= 1.1.0', require: false
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+
+  #AWS
+  gem 'capistrano'
+  gem 'capistrano-rails'
+  gem 'capistrano3-puma'
+  gem 'capistrano-rbenv'
 end
 
 group :development do
@@ -62,3 +68,32 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
+<<<<<<< HEAD
+=======
+
+gem 'bootstrap', '~> 4.4.1'
+gem 'jquery-rails'
+
+gem 'pry-byebug'
+gem 'pry-rails'
+
+# icon
+gem 'font-awesome-sass', '~> 5.4.1'
+
+# image
+gem "refile", require: "refile/rails", github: "manfe/refile"
+gem "refile-mini_magick"
+
+# pagination
+gem "kaminari"
+
+# deploy
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
+
+gem 'paranoia'
+
+gem 'rails-i18n'
+>>>>>>> origin/develop

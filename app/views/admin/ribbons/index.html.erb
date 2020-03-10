@@ -1,0 +1,51 @@
+<div class="row">
+  <div class="col-8 offset-2">
+    <h1>リボン追加</h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-8 offset-2">
+    <%= form_for @ribbon, url: admin_ribbons_path do |f| %>
+    <%= render 'layouts/error_messages', model: f.object %>
+      <label for="ribbon_color">リボン名</label>
+      <%= f.text_field :color, size: 40, class: "mr-2" %>
+      <%= f.radio_button :status, :有効 %>
+      <%= f.label "有効", class: "mr-2" %>
+      <%= f.radio_button :status, :無効 %>
+      <%= f.label "無効" %><br>
+      <label for="ribbon_image">リボン画像</label>
+      <%= f.attachment_field :image, placeholder: "ribbon Image" %><br>
+      <%= f.submit "追加する", class: "btn btn-primary mx-auto d-block" %>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-8 offset-2">
+    <h1>リボン一覧</h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-8 offset-2">
+    <table class="table table-bordered">
+      <thead class="thead-light">
+      <tr>
+      <th>リボン名</th>
+      <th>リボン画像</th>
+      <th>利用状態</th>
+      <th></th>
+      </tr>
+      </thead>
+      <% @ribbons.each do |ribbon| %>
+        <tr>
+        <td class="align-middle"><%= ribbon.color %></td>
+        <td><%= attachment_image_tag ribbon, :image, :fill, 60, 40, format: 'jpeg', alt: "リボン画像" %></td>
+        <td class="align-middle"><%= ribbon.status %></td>
+        <td width="120"><%= link_to "編集する", edit_admin_ribbon_path(ribbon.id), class: "btn btn-primary" %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

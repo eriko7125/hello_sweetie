@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-4 offset-4">
+    <h1>パスワード変更</h1>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="field">
+        <%= f.label "新しいパスワード" %><br />
+        <%= f.password_field :password, autocomplete: "new-password" %>
+        <% if @minimum_password_length %>
+          <br />
+          <em class="small">半角英数字 <%= @minimum_password_length %> 文字以上</em>
+        <% end %>
+      </div>
+
+      <p><div class="field">
+        <%= f.label "パスワード再入力" %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+      </div></p>
+
+      <p><div class="field">
+        <%= f.label "現在のパスワード" %><br />
+        <%= f.password_field :current_password, autocomplete: "current-password" %>
+      </div></p>
+
+      <p><div class="actions">
+        <%= f.submit "変更を保存する", class: "btn btn-primary mx-auto d-block" %>
+      </div></p>
+    <% end %>
+    <p class="text-center"><%= link_to "戻る", end_user_path(current_end_user) %></p>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+<div class="row">
+  <div class="col-6 offset-3">
+    <h1>ジャンル編集</h1>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-6 offset-3">
+    <%= form_for @genre, url: admin_genre_path do |f| %>
+      <table class="table">
+        <tr>
+          <td><label for="genre_name">ジャンル名</label></td>
+          <td><%= f.text_field :name %></td>
+        </tr>
+        <tr>
+          <td>利用状態</td>
+          <td><%= f.radio_button :status, :有効 %><%= f.label "有効", class: "mr-4" %>
+          <%= f.radio_button :status, :無効 %><%= f.label "無効" %></td>
+        </tr>
+      </table>
+      <p><%= f.submit "変更を保存する", class: "btn btn-primary mx-auto d-block" %></p>
+    <% end %>
+  </div>
+</div>
+
+<p class="text-center"><%= link_to "戻る", admin_genres_path %></p>
