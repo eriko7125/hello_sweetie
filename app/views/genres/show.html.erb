@@ -30,12 +30,11 @@
 </div>
 
 <div class="row">
-  <p class="text-center"><%= paginate @active_items %></p>
+  <p><%= paginate @active_items %></p>
 </div>
 
 <%# 販売ステータスが「販売停止中」の場合、商品画像小さめ、販売停止中と表示 %>
 <div class="row">
-  <small>【販売停止中アイテム】</small>
   <% @items.each do |item|%>
     <div class="col-2" >
       <div id="like-buttons-<%=item.id%>">
@@ -53,5 +52,5 @@
 </div>
 
 <div class="row">
-  <p class="mx-auto"><%= paginate @items %></p>
+  <p><%= paginate @items %></p>
 </div>
