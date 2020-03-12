@@ -8,6 +8,8 @@ class Genre < ApplicationRecord
   after_update do
     if self.status == "無効"
       self.items.each {|item| item.update(status: "販売停止中")}
+    else
+      self.items.each {|item| item.update(status: "販売中")}
     end
   end
 end

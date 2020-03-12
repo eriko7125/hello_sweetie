@@ -55,17 +55,17 @@
         <% end %>
       <% end %>
 
-    <%# menu %>
-    <ul class="nav navbar menu">
-      <li><i class="fas fa-home"></i><%= link_to " HOME", root_path %></li>
-      <li><i class="far fa-smile"></i><%= link_to " 初めての方へ", homes_about_path %></li>
-      <li><i class="fas fa-tshirt"></i><%= link_to " アイテム一覧へ", items_path %></li>
-      <li><i class="fas fa-ruler"></i><%= link_to " サイズについて", homes_size_path %></li>
-      <li><i class="fas fa-shipping-fast"></i><%= link_to " お支払い・配送について", homes_ship_pay_path %></li>
-    </ul>
-
+      <%# menu %>
+      <ul class="nav navbar menu">
+        <li><i class="fas fa-home"></i><%= link_to " HOME", root_path %></li>
+        <li><i class="far fa-smile"></i><%= link_to " 初めての方へ", homes_about_path %></li>
+        <li><i class="fas fa-tshirt"></i><%= link_to " アイテム一覧へ", items_path %></li>
+        <li><i class="fas fa-ruler"></i><%= link_to " サイズについて", homes_size_path %></li>
+        <li><i class="fas fa-shipping-fast"></i><%= link_to " お支払い・配送について", homes_ship_pay_path %></li>
+      </ul>
+    </div>
   </header>
-  
+
   <div class="container">
     <body>
       <% flash.each do |name, msg| %>
