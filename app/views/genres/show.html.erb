@@ -30,7 +30,10 @@
 </div>
 
 <div class="row">
-  <p class="mx-auto"><%= paginate @active_items %></p>
+  <p class="mx-auto">
+    <small>販売中アイテム</small>
+    <br><%= paginate @active_items %>
+  </p>
 </div>
 
 <%# 販売ステータスが「販売停止中」の場合、商品画像小さめ、販売停止中と表示 %>
@@ -52,5 +55,8 @@
 </div>
 
 <div class="row">
-  <p class="mx-auto"><%= paginate @items %></p>
+  <p class="mx-auto">
+    <small>販売停止中アイテム</small>
+    <br><%= paginate @items %>
+  </p>
 </div>
